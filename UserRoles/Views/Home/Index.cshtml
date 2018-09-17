@@ -1,0 +1,54 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using System.Security.Cryptography
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Login";
+}
+<html lang="en">
+    <head>
+
+    </head>
+
+    <body>
+        <div class="container" style="margin-top: 30px">
+            <div class="row h2-header">
+                <div class="contact-info col-sm-4">
+                    <h2>Contact Us</h2>
+                    <h5>Contact info:</h5>
+                    <address>
+                        One Microsoft Way<br />
+                        Redmond, WA 98052-6399<br />
+                        <abbr title="Phone">P:</abbr>
+                        425.555.0100
+                    </address>
+
+                    <address>
+                        <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
+                        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+                    </address>
+                </div>
+                <div class="content_div col-sm-8">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <h1>You are logged in use the navbar above to choose where you want to go</h1>
+                        </div>
+
+                    }
+                </div>
+            </div>
+            <div class="about-us">
+                <h2>About Us:</h2>
+                <p>Some text about company culpa qui officia deserunt mollit anim..</p>
+            </div>
+        </div>
+    </body>
+</html>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

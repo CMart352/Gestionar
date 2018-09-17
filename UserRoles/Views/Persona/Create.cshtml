@@ -1,0 +1,449 @@
+﻿@model UserRoles.Models.FormsViewModels.PersonaFormViewModel
+@using UserRoles.Models.FormsViewModels;
+
+
+
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+@*model[0] // persona juridica vm
+model[1] // persona juridica vm
+
+model[0].RazonSo*@
+
+<h2>Create</h2>
+
+<h4>Persona </h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            @*this generates a dropdown list try to make it a radio button check*@
+            <div class="form-group">
+
+                <label asp-for="TypoPersona" class="control">Tipo Persona:</label>
+                <div id="persona">
+                    @*@Html.LabelFor(x => x.TypoPersona, labelText: "Fisica", htmlAttributes: new { style = "color: Black" })
+                @Html.RadioButtonFor(x => x.TypoPersona, CustomEnums.TypoPersonaEnum.Fisica, new { @name = "TypoPersonas" })
+                @Html.LabelFor(x => x.TypoPersona, labelText: "Juridica", htmlAttributes: new { style = "color: Black" })
+                @Html.RadioButtonFor(x => x.TypoPersona, CustomEnums.TypoPersonaEnum.Juridica, new { @name = "TypoPersonas" })*@
+
+                    <label asp-for="TypoPersona" class="control-label">Fisica</label>
+                    <input asp-for="TypoPersona" name="TypoPersona" type="radio" value="@CustomEnums.TypoPersonaEnum.Fisica" checked>
+                    <span asp-validation-for="TypoPersona" class="text-danger"></span>
+
+                    <label asp-for="TypoPersona" class="control-label">Juridica</label>
+                    <input asp-for="TypoPersona" name="TypoPersona" type="radio" value="@CustomEnums.TypoPersonaEnum.Juridica">
+                    <span asp-validation-for="TypoPersona" class="text-danger"></span>
+                </div>
+            </div>
+            @*this generates a dropdown list try to make it a radio button check*@
+            <div class="form-group">
+
+                <label asp-for="TypoCliente" class="control">Tipo Cliente:</label>
+                <select asp-for="TypoCliente" id="clientes" asp-items="Html.GetEnumSelectList<CustomEnums.TypoClienteEnum>()"></select>
+                <span asp-validation-for="TypoCliente" class="text-danger"></span>
+            </div>
+
+
+                @*Persona fisica show this*@
+                <div class="form-firstname" style="display:block">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-secondname" style="display:block">
+                    <div class="form-group">
+                        <label asp-for="SecondName" class="control-label"></label>
+                        <input asp-for="SecondName" class="form-control" />
+                        <spa n asp-validation-for="SecondName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-firstlastname" style="display:block">
+                    <div class="form-group">
+                        <label asp-for="FirstLastName" class="control-label"></label>
+                        <input asp-for="FirstLastName" class="form-control" />
+                        <span asp-validation-for="FirstLastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-secondlastname" style="display:block">
+                    <div class="form-group">
+                        <label asp-for="SecondLastName" class="control-label"></label>
+                        <input asp-for="SecondLastName" class="form-control" />
+                        <span asp-validation-for="SecondLastName" class="text-danger"></span>
+                    </div>
+                </div>
+                @*for persona fisica*@
+
+                @*if person juridica  show this*@
+                <div class="form-razon" style="display: none">
+                    <div class="form-group">
+                        <label asp-for="RazonSocial" class="control-label"></label>
+                        <input asp-for="RazonSocial" class="form-control" />
+                        <span asp-validation-for="RazonSocial" class="text-danger"></span>
+                    </div>
+                </div>
+                @*for person juridica*@
+
+                @*for typo documento y numero documento*@
+
+                <div class="form-typodocumento" style="display:block">
+                    <div class="form-group">
+                        <div id="documento">
+                            <label asp-for="TypoDocumento" class="control-label">Tipo documento</label>
+                            @*<option value="xxxx">Typo Documento</option>*@
+                            <select asp-for="TypoDocumento" id="documentos" asp-items="Html.GetEnumSelectList<CustomEnums.TypoDocumentoEnum>()"></select>
+                            <span asp-validation-for="TypoDocumento" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-numdocumento" style="display:block">
+                    <div class="form-group">
+                        <label asp-for="NumeroDoc" class="control-label"></label>
+                        <input asp-for="NumeroDoc" id="numeroDoc" class="form-control" />
+                        <span asp-validation-for="NumeroDoc" class="text-danger"></span>
+                    </div>
+                </div>
+                @*for typo documento*@
+
+
+
+                <div class="form-group">
+                    <label asp-for="Street" class="control-label"></label>
+                    <input asp-for="Street" id="street" class="form-control" />
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Numero" class="control-label"></label>
+                    <input asp-for="Numero" class="form-control" />
+                    <span asp-validation-for="Numero" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Floor" class="control-label"></label>
+                    <input asp-for="Floor" class="form-control" />
+                    <span asp-validation-for="Floor" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Aparment" class="control-label"></label>
+                    <input asp-for="Aparment" class="form-control" />
+                    <span asp-validation-for="Aparment" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Zip" class="control-label"></label>
+                    <input asp-for="Zip" id="zip" class="form-control" />
+                    <span asp-validation-for="Zip" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div id="Country">
+                        <label asp-for="Country" data-toggle="tooltip" , title="Pais del Cliente" class="control-label">Country</label>
+                        @*<option value="xxxx">UnitedStates</option>*@
+                        <select asp-for="Country" id="CountryId" asp-items="Model.Countries" class="form-control"></select>
+
+                        <span asp-validation-for="Countries" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div id="State">
+                        <label asp-for="State" data-toggle="tooltip" , title="Estado del Cliente" class="control-label">State</label>
+                        @*<option value="xxxx">Florida</option>*@
+                        <select asp-for="State" id="StatesId" class="form-control"></select>
+
+                        <span asp-validation-for="States" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div id="City">
+                        <label asp-for="City" data-toggle="tooltip" , title="Ciudad del Cliente" class="control-label">City</label>
+                        @*<option value="xxxx">Miami</option>*@
+                        <select asp-for="City" id="CitiesId" class="form-control"></select>
+                        <span asp-validation-for="Cities" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Web" class="control-label"></label>
+                    <input asp-for="Web" class="form-control" />
+                    <span asp-validation-for="Web" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HomePhone" class="control-label"></label>
+                    <input asp-for="HomePhone" class="form-control" />
+                    <span asp-validation-for="HomePhone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CellPhone" class="control-label"></label>
+                    <input asp-for="CellPhone" class="form-control" />
+                    <span asp-validation-for="CellPhone" class="text-danger"></span>
+                </div>
+
+                @*<div class="form-representantes" style="display:none">
+                <table class="table" id="maintable">
+                    <thead>
+                        <tr>
+                            <th class="control-label">Nombre</th>
+                            <th class="control-label">Nombre</th>
+                            <th class="control-label">Apellido</th>
+                            <th>Typo Representante</th>
+                            <th>Typo Documento</th>
+                            <th>Numero Documento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="data-contact-person">
+                            <td>
+                                <input type="text" name="FirstName" class="form-control FirstName01" />
+                            </td>
+                            <td>
+                                <input type="text" name="FirstLastName" class="form-control FirstLastName01" />
+                            </td>
+                            <td>
+
+                                <select asp-for="TypoRepresentante" id="representantes" asp-items="Html.GetEnumSelectList<CustomEnums.TypoRepresentanteEnum>()"></select>
+                            </td>
+                            <td>
+
+                            <select asp-for="TypoDocumento" id="documentos" asp-items="Html.GetEnumSelectList<CustomEnums.TypoDocumentoEnum>()"></select>
+                            </td>
+
+                            <td>
+                                <input type="text" name="NumeroDoc" class="form-control NumeroDoc01" />
+                            </td>
+                            <td>
+                                <button type="button" id="btnAdd" class="btn btn-xs btn-primary classAdd">Add More</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>*@
+
+
+                <div class="form-representantes" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="control-label"></label>
+                                <input type="text" id="firstName" placeholder="First Name" asp-for="FirstName" class="form-control">
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label asp-for="FirstLastName" class="control-label"></label>
+                                <input type="text" id="lastName" placeholder="First Last Name" asp-for="FirstLastName" class="form-control">
+                                <span asp-validation-for="FirstLastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="TypoRepresentante" class="control-label"></label>
+                                <select asp-for="TypoRepresentante" id="typorepresentante" asp-items="Html.GetEnumSelectList<CustomEnums.TypoRepresentanteEnum>()" class="control-label"></select>
+                                <span asp-validation-for="TypoRepresentante" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="TypoDocumento" class="control-label"></label>
+                                <select asp-for="TypoDocumento" id="typodocumento" asp-items="Html.GetEnumSelectList<CustomEnums.TypoDocumentoEnum>()" class="control-label"></select>
+                                <span asp-validation-for="TypoDocumento" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="NumeroDoc" class="control-label"></label>
+                                <input type="text" id="numerodocumento" placeholder="numero" asp-for="NumeroDoc" class="form-control">
+                                <span asp-validation-for="NumeroDoc" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input type="button" class="add-row" value="Add Row">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>Name</th>
+                                <th>Last Name</th>
+                                <th>Caracter</th>
+                                <th>Typo</th>
+                                <th>Numero</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <button type="button" class="delete-row">Delete Row</button>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+        </form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/Scripts/regions.js" asp-append-version="true"></script>
+
+<script>
+    $(document).ready(function () {
+        console.log("i am here");
+        $('input[name=TypoPersona]').change(function (e) {
+            let value = e.target.value.trim()
+            console.log("the val is " + value);
+            switch (value) {
+                case 'Fisica':
+                    $('.form-firstname').css("display", "block");
+                    $('.form-secondname').css("display", "block");
+                    $('.form-firstlastname').css("display", "block");
+                    $('.form-secondlastname').css("display", "block");
+                    $('.form-typodocumento').css("display", "block");
+                    $('.form-numdocumento').css("display", "block");
+                    $('.form-razon').css("display", "none");
+                    $('.form-representantes').css("display", "none");
+                    
+
+                    break;
+
+                case 'Juridica':
+                    $('.form-firstname').css("display", "none");
+                    $('.form-secondname').css("display", "none");
+                    $('.form-firstlastname').css("display", "none");
+                    $('.form-secondlastname').css("display", "none");
+                    $('.form-typodocumento').css("display", "block");
+                    $('.form-numdocumento').css("display", "block");
+                    $('.form-razon').css("display", "block");
+                    $('.form-representantes').css("display", "block");
+                    $("#street").val('');
+                    $("#numeroDoc").val('');
+                    $("#zip").val('');
+                    break;
+            }
+        })
+    })
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $(".add-row").click(function () {
+            var name = $("#firstName").val();
+            var lastName = $("#lastName").val();
+            var typoRep = $("#typorepresentante").val();
+            var typoDoc = $("#typodocumento").val();
+            var numeroDoc = $("#numerodocumento").val();
+
+            var markup =
+                "<tr><td><input type='checkbox' name='record'></td>" +
+                "<td><input name='FirstNameTable' type='hidden'  value='" + name + "'/>" + name + "</td>" +
+                "<td><input name='FirstLastNameTable' type='hidden'  value='" + lastName + "'/>" + lastName + "</td>" +
+                "<td><input name='TypoRepresentanteTable' type='hidden'  value='" + typoRep + "'/>" + typoRep + "</td>" +
+                "<td><input name='TypoDocumentoTable' type='hidden'  value='" + typoDoc + "'/>" + typoDoc + "</td>" +
+                "<td><input name='NumeroDocTable' type='hidden'  value='" + numeroDoc + "'/>" + numeroDoc + "</td> </tr>"
+
+                //"<tr><td><input type='checkbox' name='record'></td><td><input name='test' type='hidden'  value='" + name + "'/>" + name + "</td> <td>" + typoRep + "</td> <td>" + typoDoc + "</td> <td>" + numeroDoc + "</td> </tr>";
+            $("table tbody").append(markup);
+            console.log(markup + "thi is markup");
+            console.log(lastName + "this is lastname");
+            console.log(name + "this is name");
+
+            //to clear the input values
+            var name = $("#firstName").val('');
+            var lastName = $("#lastName").val('');
+            var lastName = $("#typorepresentante").val('');
+            var typoDoc = $("#typodocumento").val('');
+            var numeroDoc = $("#numerodocumento").val('');
+
+            console.log(name + "thi is nameafter");
+            console.log(lastName + "this is lastnameafter");
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row").click(function () {
+            $("table tbody").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+
+    $(document).on("click", ".deleteContact", function () {
+        $(this).closest("tr").remove(); // closest used to remove the respective 'tr' in which I have my controls
+    });
+</script>
+
+@*this functions is used to add new representatives from the table*@
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on("click", ".classAdd", function () { //
+                var rowCount = $('.data-contact-person').length + 1;
+                var contactdiv = '<tr class="data-contact-person">' +
+                    '<td><input type="text" name="FirstName' + rowCount + '" class="form-control FirstName01" /></td>' +
+                    '<td><input type="text" name="FirstLastName' + rowCount + '" class="form-control FirstLastName01" /></td>' +
+                    '<td><select asp-for="TypoRepresentante" name="TypoRep' + rowCount + '" id="representantes" asp-items="Html.GetEnumSelectList<CustomEnums.TypoRepresentanteEnum>()"></select></td>' +
+                    //'<td><input type="text" name="typoRep' + rowCount + '" class="form-control typoRep01" /></td>' +
+                    '<td><input type="text" name="TypoDoc' + rowCount + '" class="form-control typoDoc01" /></td>' +
+                    '<td><input type="text" name="NumeroDoc' + rowCount + '" class="form-control NumeroDoc01" /></td>' +
+                    //'<td><button type="button" id="btnAdd" class="btn btn-xs btn-primary classAdd">Add More</button>' +
+                    '<td><button type="button" id="btnDelete" class="deleteContact btn btn btn-danger btn-xs">Remove</button></td>' +
+                    '</tr>';
+                $('#maintable').append(contactdiv); // Adding these controls to Main table class
+            });
+        });
+    </script>*@
+
+@*this functions is used to remove representatives from the table*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

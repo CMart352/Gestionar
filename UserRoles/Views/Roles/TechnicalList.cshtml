@@ -1,0 +1,13 @@
+﻿@model UserRoles.Models.ViewModels.UserListViewModel
+@{
+    ViewData["Title"] = "TechnicalList";
+}
+<div>
+    <h2 class="h2-header">Technical List</h2>
+    <div id="Technicals">
+        @await Html.PartialAsync("_PartialTable", new ViewDataDictionary(this.ViewData)
+        {
+            {"type", "Technical"}
+        })
+    </div>
+</div>

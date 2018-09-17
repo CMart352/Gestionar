@@ -1,0 +1,94 @@
+﻿@model UserRoles.Models.ViewModels.UserListViewModel
+@{
+    ViewData["Title"] = "User List";
+}
+
+<div>
+    <div class="userList-header">
+        <h2 class="h2-header">List of Users</h2>
+        <a>@Html.ActionLink("Create A User", "Register", "Account", null, new { @class = "btn btn-primary btn-sm btn-add-user" })</a>
+    </div>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#Sellers">Sellers</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#Technicals">Technicals</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#Admins">Admins</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#Clients">Clients</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div id="Sellers" class="tab-pane fade in active">
+            @await Html.PartialAsync("_PartialTable", new ViewDataDictionary(this.ViewData)
+            {
+                {"type", "Seller"}
+            })
+        </div>
+        <div id="Technicals" class="tab-pane fade">
+
+            @await Html.PartialAsync("_PartialTable", new ViewDataDictionary(this.ViewData)
+            {
+                {"type", "Technical"}
+            })
+        </div>
+        <div id="Admins" class="tab-pane fade">
+
+            @await Html.PartialAsync("_PartialTable", new ViewDataDictionary(this.ViewData)
+            {
+                {"type", "Admin"}
+            })
+        </div>
+        @*Build a new table for clients*@
+        <div id="Clients" class="tab-pane fade">
+            <table id="client-table" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Email Confirmed</th>
+                    <th>Block</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                @foreach (var client in @Model.Clients)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("ClientDetails", "Roles", new {email = client.Email})">@client.Email</a></td>
+                        <td>
+                            @if (client.EmailConfirmed)
+                            {
+                                <p>Yes</p>
+                            }
+                            else
+                            {
+                                <p>No</p>
+
+                            }
+
+                        </td>
+
+                        <td>
+                            @if (client.IsBlocked)
+                            {
+                                <a onclick="return confirm('Are you sure you wish to unblock this user?')" class="a-unblock-link " href="@Url.Action("ToggleBlock", "Roles", new {emailDto = client.Email})">Unblock</a>
+                            }
+                            else
+                            {
+                                <a onclick="return confirm('Are you sure you wish to block this user?')" class="a-block-link" href="@Url.Action("ToggleBlock", "Roles", new {emailDto = client.Email})">Block</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+

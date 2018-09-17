@@ -1,0 +1,114 @@
+﻿@model IEnumerable<UserRoles.Models.Persona>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New Client</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Floor)
+            </th>
+
+            @*<th>
+        @Html.DisplayNameFor(model => model.Aparment)
+        </th>*@
+            @*<th>
+            @Html.DisplayNameFor(model => model.Zip)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            @*<th>
+        @Html.DisplayNameFor(model => model.Web)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.HomePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusCliente)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.CellPhone)
+        </th>*@
+            @*<th>
+        @Html.DisplayNameFor(model => model.Id)
+        </th>*@
+            @*<th>
+        @Html.DisplayNameFor(model => model.NumeroDoc)
+        </th>*@
+            @*<th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>*@
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Floor)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Aparment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Web)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.HomePhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusCliente)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroDoc)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.City.Name)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PersonId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PersonId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PersonId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

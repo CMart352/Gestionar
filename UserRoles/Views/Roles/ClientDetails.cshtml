@@ -1,0 +1,37 @@
+﻿@model UserRoles.Models.ViewModels.ClientDetailsViewModel
+@{
+    ViewData["Title"] = "ClientDetails";
+    var message = "";
+}
+
+<h2 class="register-form page-header">Client Details</h2>
+<div class="details-div register-form">
+    <div class="field-label">Email</div>:
+    <div class="details"><p>@Model.Email</p></div>
+    <br/>
+
+    @foreach (var role in @Model.Roles)
+    {
+        if (role == "Cl_Provider")
+        {
+            message += "Provider\n";
+        }
+        if (role == "Cl_ATM")
+        {
+            message += "ATM Owner\n";
+        }
+        if (role == "Cl_Location")
+        {
+            message += "Location Owner\n";
+        }
+        if (role == "Cl_WC")
+        {
+            message += "Owner of Working Capital\n";
+        }
+    }
+    <div class="field-label">Types of Client</div>:
+    <div class="details" style="white-space: pre"><p>@message</p></div>
+        
+    
+</div>
+<a>@Html.ActionLink("Return to List of Users", "UserList", "Roles")</a>

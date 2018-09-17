@@ -1,0 +1,46 @@
+﻿@model UserRoles.Models.ViewModels.ManageViewModels.ChangeUserRoleViewModel
+@{
+    ViewData["Title"] = "Change Role";
+}
+
+
+<h2 class="register-form page-header">@ViewData["Title"]</h2>
+
+<div>
+    <div class="register-form">
+        <div class="change-role-email-display">
+            <label>User Email</label>
+            <p>@Model.Email</p>
+        </div>
+        <form asp-controller="Roles" asp-action="SaveUserRole" method="post" id="SaveChangeRole">
+            <div class="form-group form-group-change-role">
+                @Html.LabelFor(m => m.UserRole)
+                @Html.DropDownListFor(m => m.UserRole, new SelectList(Model.Roles, "Name", "Name"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserRole)
+            </div>
+            @Html.HiddenFor(m => m.OldRole)
+            @Html.HiddenFor(m => m.Email)
+            @Html.HiddenFor(m => m.Roles)
+
+            <button type="submit" class="btn btn-info btn-save" id="saveBtn">Save</button>
+            <a>@Html.ActionLink("Return to List of Users", "UserList", "Roles")</a>
+
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function() {
+        $('#saveBtn').click(function(e) {
+            e.preventDefault();
+
+            var result = confirm("Are you sure you want to change this users role?");
+
+            if (result) {
+
+                $('#SaveChangeRole').submit();
+            }
+        });
+    });
+</script>

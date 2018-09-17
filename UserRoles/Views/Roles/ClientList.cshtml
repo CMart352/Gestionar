@@ -1,0 +1,96 @@
+﻿@model UserRoles.Models.ViewModels.UserListViewModel
+@{
+    ViewData["Title"] = "List of Clients";
+}
+<div>
+    <h2 class="h2-header">Client List</h2>
+    <div id="Clients">
+        <table id="UserSellers"
+               class="table table-striped"
+               data-toggle="table"
+               data-pagination="true"
+               data-page-list="[5, 10, 20, 30, 50, 100]"
+               data-search="true"
+               data-search-align="left">
+            <thead>
+                <tr>
+                    <th data-sortable="true" data-field="email" class="th-sortable">
+                        <div class="table-head-title">Email</div>
+                        <div class="table-head-carets">
+                            <span class="caret up same-line"></span>
+                            <span class="caret same-line"></span>
+                        </div>
+
+                    </th>
+                    <th data-sortable="true" data-field="emailConfirmed" class="th-sortable">
+                        <div class="table-head-title">Email Confirmed</div>
+                        <div class="table-head-carets">
+                            <span class="caret up same-line"></span>
+                            <span class="caret same-line"></span>
+                        </div>
+
+                    </th>
+                    <th data-sortable="true" data-field="approval">
+                        <div class="table-head-title">Approve/Deny</div>
+                        <div class="table-head-carets">
+                            <span class="caret up same-line"></span>
+                            <span class="caret same-line"></span>
+                        </div>
+
+                    </th>
+                    <th data-sortable="true" data-field="block" class="th-sortable">
+                        <div class="table-head-title">Block</div>
+                        <div class="table-head-carets">
+                            <span class="caret up same-line"></span>
+                            <span class="caret same-line"></span>
+                        </div>
+
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var client in @Model.Clients)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("ClientDetails", "Roles", new {email = client.Email})">@client.Email</a></td>
+                        <td>
+                            @if (client.EmailConfirmed)
+                            {
+                                <p>Yes</p>
+                            }
+                            else
+                            {
+                                <p>No</p>
+
+                            }
+
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-success">Approve</button>
+                            <button class="btn btn-sm btn-danger">Deny</button>
+                        </td>
+
+                        <td>
+                            @if (client.IsBlocked)
+                            {
+                                <a onclick="return confirm('Are you sure you wish to unblock this user?')"
+                                   class="a-unblock-link "
+                                   href="@Url.Action("ToggleBlock", "Roles", new {emailDto = client.Email})">Unblock</a>
+                            }
+                            else
+                            {
+                                <a onclick="return confirm('Are you sure you wish to block this user?')"
+                                   class="a-block-link"
+                                   href="@Url.Action("ToggleBlock", "Roles", new {emailDto = client.Email})">Block</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>

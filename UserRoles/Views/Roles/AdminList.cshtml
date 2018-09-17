@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "AdminList";
+}
+
+<div>
+    <h2 class="h2-header">Admin List</h2>
+    
+    <div id="Admins">
+
+        @await Html.PartialAsync("_PartialTable", new ViewDataDictionary(this.ViewData)
+        {
+            {"type", "Admin"}
+        })
+    </div>
+
+</div>

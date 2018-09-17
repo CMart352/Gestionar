@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Intermediate
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@*<h2 class="register-form page-header">@ViewData["Title"]</h2>*@
+
+    @Html.AntiForgeryToken()
+    <div class="register-form">
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <h4 class="registration-header">Create a new user.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.Label("User Role")
+                @Html.DropDownListFor(m => m.UserRole, new SelectList(Model.Roles, "Name", "Name"), new { @class = "form-control user-role-dropdown" })
+                @Html.ValidationMessageFor(m => m.UserRole)
+            </div>
+            <div id="hidden-checkboxes" class="form-group" style="display: none">
+                @Html.Label("Type of Client")
+                <div class="checkbox-client">
+                    @Html.CheckBoxFor(r => r.ClientAtm)
+                    <label>ATM Owner</label>
+                </div>
+                <div class="checkbox-client">
+                    @Html.CheckBoxFor(r => r.ClientLocation)
+                    <label>Location Owner</label>
+                </div>
+                <div class="checkbox-client">
+                    @Html.CheckBoxFor(r => r.ClientWc)
+                    <label>Working Capital Owner</label>
+                </div>
+                <div class="checkbox-client">
+                    @Html.CheckBoxFor(r => r.ClientProvider)
+                    <label>Provider</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script>
+        $(function() {
+            var v = $('.user-role-dropdown').val();
+            updateVisibility(v);
+           
+            //When user changes dropdown, update visibility
+            $('.user-role-dropdown').change(function(e) {
+                v = $('.user-role-dropdown').val();
+                updateVisibility(v);
+            });
+        
+            function updateVisibility(isVisible) {
+                if (isVisible === "Client") {
+                    $('#hidden-checkboxes').fadeIn();
+                } else {
+                    $('#hidden-checkboxes').fadeOut();
+                }
+            }
+
+        });
+
+    </script>
+}

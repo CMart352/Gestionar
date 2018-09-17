@@ -1,0 +1,112 @@
+﻿e@using UserRoles.Models.ViewModels.ManageViewModels
+@model UserRoles.Models.ViewModels.UserListViewModel
+@{
+    IEnumerable<ApplicationUser> list = null;
+    var type = ViewData["type"];
+    if (type == "Seller")
+    {
+        list = Model.Sellers;
+    }
+    if (type == "Technical")
+    {
+        list = Model.Technicals;
+    }
+    if (type == "Admin")
+    {
+        list = Model.Admins;
+    }
+    if(type == "Banker")
+    {
+        list = Model.Bankers;
+    }
+}
+
+
+<table id="UserSellers" 
+       class="table table-striped table-responsive-lg" 
+       data-toggle="table" 
+       data-pagination="true" 
+       data-page-list="[5, 10, 20, 30, 50, 100]" 
+       data-search="true" 
+       data-search-align="left">
+    <thead>
+    <tr>
+        <th data-sortable="true" data-field="email" class="th-sortable">
+            <div class="table-head-title">Email</div>
+            <div class="table-head-carets">
+                <span class="caret up same-line"></span>
+                <span class="caret same-line"></span>
+            </div>
+           
+        </th>
+        <th data-sortable="true" data-field="emailConfirmed" class="th-sortable">
+            <div class="table-head-title">Email Confirmed</div>
+            <div class="table-head-carets">
+                <span class="caret up same-line"></span>
+                <span class="caret same-line"></span>
+            </div>
+
+        </th>
+        <th>
+            <div class="table-head-title">Change Role</div>
+            <div class="table-head-carets">
+                <span class="caret up same-line"></span>
+                <span class="caret same-line"></span>
+            </div>
+
+        </th>
+        <th data-sortable="true" data-field="block" class="th-sortable">
+            <div class="table-head-title">Block</div>
+            <div class="table-head-carets">
+                <span class="caret up same-line"></span>
+                <span class="caret same-line"></span>
+            </div>
+
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var seller in list)
+    {
+
+        <tr>
+            <td>@seller</td>
+            <td>
+                @if (seller.EmailConfirmed)
+                {
+                <div>
+                    @*<span>Yes</span>*@
+
+                    @*<a href="@Html.ActionLink("SellerList", "Roles", new {userEmail = seller.Email})">Send Credentials</a>*@
+                    @Html.ActionLink("Send Credentials", type + "List", "Roles", new {userEmail = seller.Email }, new { @class="btn btn-sm btn-info"})
+                </div>
+                }
+                else
+                {
+                    <p>No</p>
+
+                }
+
+            </td>
+            <td>
+                <a href="@Url.Action("ChangeRole", "Roles", new {userEmail = seller.Email})">@type</a>
+            </td>
+            <td>
+                @*<button type="button" class="btn-sm btn-danger js-toggle-block" data-user-email ="@seller.Email">Block</button>*@
+                @if (seller.IsBlocked)
+                {
+                    <a onclick="return confirm('Are you sure you wish to unblock this user?')" 
+                       class="a-unblock-link "href="@Url.Action("ToggleBlock", "Roles", new ToggleBlockViewModel{Email = seller.Email, Type = type.ToString()})">Unblock</a>
+                }
+                else
+                {
+                    <a onclick="return confirm('Are you sure you wish to block this user?')" 
+                       class="a-block-link" href="@Url.Action("ToggleBlock", "Roles", new ToggleBlockViewModel{Email = seller.Email, Type = type.ToString()})">Block</a>
+                }
+
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
