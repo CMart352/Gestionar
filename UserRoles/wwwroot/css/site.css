@@ -1,4 +1,9 @@
-﻿html {
+﻿:root {
+    --gray-light: #efefef;
+}
+
+
+html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -65,6 +70,17 @@ button.btn-signin {
     border: 0;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.font-icon {
+    float: right;
+    margin-top: -52px;
+    position: relative;
+    z-index: 2;
+    font-size: 1.5rem;
+    color: white;
+    opacity: 0.5;
+    right: 1.3rem;
 }
 
 /* Wrapping element */
@@ -137,9 +153,141 @@ button.btn-signin {
     margin-right: 20px;
 }
 
+
+.bordered-box {
+    border: 1px solid var(--gray-light);
+    padding: 2rem;
+    border-radius: .9rem;
+    margin-bottom: 2rem
+}
+
+.btn-outline-blue {
+    position: relative;
+    color: #7d7d7d;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    border-bottom: 2px solid #7d7d7d;
+    border-radius: 0;
+    z-index: 1;
+}
+
+.add__row {
+    color: #7d7d7d;
+}
+
+.btn-outline-blue::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 2px;
+    width: 102%;
+    height: 102%;
+    transform: scaleY(0);
+    transform-origin: bottom center;
+    background: #25a6e2;
+    border-bottom: 2px solid #25a6e2;
+    border-radius: .25rem;
+    z-index: -1;
+    transition: transform 0.3s;
+}
+
+.btn-outline-blue:hover {
+    color: white !important;
+    border-radius: .30rem;
+    z-index: 2;
+}
+
+    .btn-outline-blue:hover::after {
+        transform: scaleY(1);
+    }
+
+.required-text {
+    font-size: .7rem;
+    font-weight: bold;
+    float: right;
+    line-height: 1.7rem;
+}
+
+.inline-header{
+    display: inline-block;
+    margin-right: 2rem;
+}
+
+.add-user i{
+    color: #343a40;
+    transition: transform 0.3s ease;
+}
+
+.add-user i:hover{
+    transform: scale(1.2);
+}
+
+.link-align {
+    float: right;
+    line-height: 2rem;
+}
+
+.responsive-text-right {
+    text-align: right;
+}
+
+.btn-outline-red {
+    /*color: #7d7d7d;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    border-bottom: 2px solid #7d7d7d;*/
+    position: relative;
+    color: #7d7d7d;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    border-bottom: 2px solid #7d7d7d;
+    border-radius: 0;
+    z-index: 1;
+}
+
+    .btn-outline-red::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: 2px;
+        width: 100%;
+        height: 100%;
+        transform: scaleY(0);
+        transform-origin: bottom center;
+        background: #b22222;
+        border-bottom: 2px solid #b22222;
+        border-radius: .25rem;
+        z-index: -1;
+        transition: transform 0.3s;
+    }
+
+    .btn-outline-red:hover {
+        color: white !important;
+        border-radius: .30rem;
+        z-index: 2;
+    }
+
+        .btn-outline-red:hover::after {
+            transform: scaleY(1);
+        }
+
+.add-display-block {
+    display: block;
+}
+
 /* User Tables */
 .a-block-link {
     color: red;
+}
+
+.a-blue-link {
+    color: #0080ff;
+}
+
+.a-yellow-link {
+    color: #ffae42;
 }
 
 .a-unblock-link {

@@ -5,7 +5,9 @@
 
 <div>
     <div class="userList-header">
-        <h2 class="h2-header">List of Users</h2>
+        <h2 class="h2-header inline-header">List of Users</h2>
+        <a href="@Url.Action("Register", "Account")" class="add-user"><i class="fas fa-plus-square fa-2x"></i></a>
+
         <a>@Html.ActionLink("Create A User", "Register", "Account", null, new { @class = "btn btn-primary btn-sm btn-add-user" })</a>
     </div>
         <ul class="nav nav-tabs">

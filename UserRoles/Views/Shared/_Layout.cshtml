@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,52 +20,65 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand font-weight-bold">UserRoles</a>
-        <button class="navbar-toggler" 
-                type="button" 
-                data-toggle="collapse" 
-                data-target="#navbarNavAltMarkup" 
-                aria-controls="navbarNavAltMarkup"
-                aria-expanded="false" 
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse justify-content-end" id="navbarNavAltMarkup">
-            <ul class="nav navbar-nav">
+        <div class="container">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand font-weight-bold">UserRoles</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse justify-content-end" id="navbarNavAltMarkup">
+                <ul class="nav navbar-nav">
 
-                @if (User.IsInRole("Admin"))
-                {
-                    @*<li>@Html.ActionLink("Create A User", "Register", "Account")</li>*@
-                    @*<li>@Html.ActionLink("Users", "UserList", "Roles")</li>*@
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Users<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            @*<li>@Html.ActionLink("Users", "UserList", "Roles")</li>*@
-                            <li class="dropdown-item">@Html.ActionLink("Sellers", "SellerList", "Roles")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Technical", "TechnicalList", "Roles")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Admin", "AdminList", "Roles")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Clients", "ClientList", "Roles")</li>
-                            <li class="dropdown-item">@Html.ActionLink("Bankers", "BankerList", "Roles")</li>
-                            <li class="dropdown-divider"></li>
-                            <li class="dropdown-item">@Html.ActionLink("Add a User", "Register", "Account")</li>
-                        </ul>
-                    </li>
-                }
-                @if (User.IsInRole("Seller"))
-                {
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a></li>
-                    <li class="nav-item">
-                        <a asp-area="" asp-controller="Roles" asp-action="ClientList" class="nav-link">Client List</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-area="" asp-controller="Roles" asp-action="CreateClient" class="nav-link">Create a Client</a>
-                    </li>
-                }
-            </ul>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @*<li>@Html.ActionLink("Create A User", "Register", "Account")</li>*@
+                        @*<li>@Html.ActionLink("Users", "UserList", "Roles")</li>*@
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Users<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @*<li>@Html.ActionLink("Users", "UserList", "Roles")</li>*@
+                                <li class="dropdown-item">@Html.ActionLink("Sellers", "SellerList", "Roles")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Technical", "TechnicalList", "Roles")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Admin", "AdminList", "Roles")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Clients", "ClientList", "Roles")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Bankers", "BankerList", "Roles")</li>
+                                <li class="dropdown-divider"></li>
+                                <li class="dropdown-item">@Html.ActionLink("Add a User", "Register", "Account")</li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Clients<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @*<li>@Html.ActionLink("Users", "UserList", "Roles")</li>*@
+                                <li class="dropdown-item">@Html.ActionLink("Persona Fisica", "PersonaFisica", "Persona")</li>
+                                <li class="dropdown-item">@Html.ActionLink("Persona Juridica", "PersonaJuridica", "Persona")</li>
+                                <li class="dropdown-divider"></li>
+                                <li class="dropdown-item">@Html.ActionLink("Agrega un cliente", "Create", "Persona")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Seller"))
+                    {
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a></li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Roles" asp-action="ClientList" class="nav-link">Client List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Roles" asp-action="CreateClient" class="nav-link">Create a Client</a>
+                        </li>
+                    }
+                </ul>
 
-            @await Html.PartialAsync("_LoginPartial")
+                <ul class="navbar-nav ml-auto">
+                    @await Html.PartialAsync("_LoginPartial")
+                </ul>
+            </div>
         </div>
-
     </nav>
 
     <div class="container body-content">

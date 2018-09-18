@@ -10,16 +10,35 @@
     Layout = "_Layout_Login";
 }
 
-    <div class="body-login">
-        <div class="signin">
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h1 class="h1-login">Sign In</h1>
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <input asp-for="Email" class="form-control" placeholder="Email"/>
-                <span asp-validation-for="Email" class="text-danger"></span>
-                <input asp-for="Password" class="form-control" placeholder="Password"/>
-                <span asp-validation-for="Password" class="text-danger"></span>
-                <button type="submit" class="btn btn-signin">Sign in</button>
-            </form>
-        </div>
+<div class="body-login">
+    <div class="signin">
+        <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+            <h1 class="h1-login">Sign In</h1>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Email" class="form-control" placeholder="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="password-field">
+                <input asp-for="Password" class="form-control" placeholder="Password" id="passwordField" />
+                <span class="far fa-eye font-icon" onclick="myFunction()" id="passwordIcon"></span>
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <button type="submit" class="btn btn-signin">Sign in</button>
+        </form>
     </div>
+</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("passwordField");
+        var icon = document.getElementById("passwordIcon");
+        if (x.type === "password") {
+            x.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        }
+        else {
+            x.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>

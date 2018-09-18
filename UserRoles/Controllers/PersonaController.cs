@@ -244,6 +244,18 @@ namespace UserRoles.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult PersonaFisica()
+        {
+            var model = _personaRepository.All();
+
+            return View(model);
+        }
+
+        public async Task<IActionResult> PersonaJuridica()
+        {
+            return View();
+        }
+
         private bool PersonaExists(int id)
         {
             return _context.Personas.Any(e => e.PersonId == id);

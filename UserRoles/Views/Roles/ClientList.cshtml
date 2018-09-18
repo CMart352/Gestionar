@@ -3,7 +3,9 @@
     ViewData["Title"] = "List of Clients";
 }
 <div>
-    <h2 class="h2-header">Client List</h2>
+    <h2 class="h2-header inline-header">Client List</h2>
+    <a href="@Url.Action("Register", "Account")" class="add-user"><i class="fas fa-plus-square fa-2x"></i></a>
+
     <div id="Clients">
         <table id="UserSellers"
                class="table table-striped"
