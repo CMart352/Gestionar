@@ -378,6 +378,45 @@
 <script>
 
     $(document).ready(function () {
+        console.log("i am here");
+        $('input[name=TypoPersona]').change(function (e) {
+            let value = e.target.value.trim()
+            console.log("the val is " + value);
+            switch (value) {
+                case 'Fisica':
+                    $('.form-firstname').css("display", "block");
+                    $('.form-secondname').css("display", "block");
+                    $('.form-firstlastname').css("display", "block");
+                    $('.form-secondlastname').css("display", "block");
+                    $('.form-typodocumento').css("display", "block");
+                    $('.form-numdocumento').css("display", "block");
+                    $('.form-razon').css("display", "none");
+                    $('.form-representantes').css("display", "none");
+
+
+                    break;
+
+                case 'Juridica':
+                    $('.form-firstname').css("display", "none");
+                    $('.form-secondname').css("display", "none");
+                    $('.form-firstlastname').css("display", "none");
+                    $('.form-secondlastname').css("display", "none");
+                    $('.form-typodocumento').css("display", "block");
+                    $('.form-numdocumento').css("display", "block");
+                    $('.form-razon').css("display", "block");
+                    $('.form-representantes').css("display", "block");
+                    $("#street").val('');
+                    $("#numeroDoc").val('');
+                    $("#zip").val('');
+                    break;
+            }
+        })
+    })
+</script>
+
+<script>
+
+    $(document).ready(function () {
         $(".add-row").click(function () {
             var name = $("#firstName").val();
             var lastName = $("#lastName").val();
@@ -387,11 +426,11 @@
 
             var markup =
                 "<tr><td><input type='checkbox' name='record'></td>" +
-                "<td><input name='firstName' type='hidden'  value='" + name + "'/>" + name + "</td>" +
-                "<td><input name='lastName' type='hidden'  value='" + lastName + "'/>" + lastName + "</td>" +
-                "<td><input name='typoRep' type='hidden'  value='" + typoRep + "'/>" + typoRep + "</td>" +
-                "<td><input name='typoDoc' type='hidden'  value='" + typoDoc + "'/>" + typoDoc + "</td>" +
-                "<td><input name='numDoc' type='hidden'  value='" + numeroDoc + "'/>" + numeroDoc + "</td> </tr>"
+                "<td><input name='FirstNameTable' type='hidden'  value='" + name + "'/>" + name + "</td>" +
+                "<td><input name='FirstLastNameTable' type='hidden'  value='" + lastName + "'/>" + lastName + "</td>" +
+                "<td><input name='TypoRepresentanteTable' type='hidden'  value='" + typoRep + "'/>" + typoRep + "</td>" +
+                "<td><input name='TypoDocumentoTable' type='hidden'  value='" + typoDoc + "'/>" + typoDoc + "</td>" +
+                "<td><input name='NumeroDocTable' type='hidden'  value='" + numeroDoc + "'/>" + numeroDoc + "</td> </tr>"
 
             //"<tr><td><input type='checkbox' name='record'></td><td><input name='test' type='hidden'  value='" + name + "'/>" + name + "</td> <td>" + typoRep + "</td> <td>" + typoDoc + "</td> <td>" + numeroDoc + "</td> </tr>";
             $("table tbody").append(markup);
@@ -400,11 +439,11 @@
             console.log(name + "this is name");
 
             //to clear the input values
-            name = $("#firstName").val('');
-            lastName = $("#lastName").val('');
-            lastName = $("#typorepresentante").val('');
-            typoDoc = $("#typodocumento").val('');
-            numeroDoc = $("#numerodocumento").val('');
+            var name = $("#firstName").val('');
+            var lastName = $("#lastName").val('');
+            var lastName = $("#typorepresentante").val('');
+            var typoDoc = $("#typodocumento").val('');
+            var numeroDoc = $("#numerodocumento").val('');
 
             console.log(name + "thi is nameafter");
             console.log(lastName + "this is lastnameafter");
@@ -446,6 +485,8 @@
     </script>*@
 
 @*this functions is used to remove representatives from the table*@
+
+
 
 
 
