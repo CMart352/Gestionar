@@ -98,7 +98,7 @@ namespace UserRoles.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonId,Street,Numero,Floor,Aparment,Zip,City,State,Country,Email,Web,HomePhone,CellPhone,NumeroDoc,FirstName, SecondName, FirstLastName, SecondLastName,TypoDocumento,TypoPersona, RazonSocial,TypoRepresentante")] PersonaFormViewModel personavmodels, IFormCollection collectionRepresentantes)
+        public async Task<IActionResult> Create([Bind("PersonId,Street,Numero,Floor,Aparment,Zip,City,State,Country,Email,Web,HomePhone,CellPhone,NumeroDoc,FirstName, SecondName, FirstLastName, SecondLastName,TypoDocumento,TypoPersona, RazonSocial,TypoRepresentante, Atm, Location, WorkingCapital")] PersonaFormViewModel personavmodels, IFormCollection collectionRepresentantes)
         //public async Task<IActionResult> Create([Bind("PersonId,Street,Numero,Floor,Aparment,Zip,City,State,Country,Email,Web,HomePhone,CellPhone,NumeroDoc,FirstName, SecondName, FirstLastName, SecondLastName,TypoDocumento,TypoPersona, RazonSocial,TypoRepresentante")] PersonaFormViewModel personavmodels, IFormCollection collectionRepresentantes)
         {
             Persona person = null;

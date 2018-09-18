@@ -48,10 +48,18 @@
                     </div>
                     @*this generates a dropdown list try to make it a radio button check*@
                     <div class="form-group">
+                        @Html.LabelFor(x => x.Atm, labelText: "ATM", htmlAttributes: new { style = "color: Black" })
+                        @Html.CheckBoxFor(x => x.Atm)
+                    </div>
 
-                        <label asp-for="TypoCliente" class="control add-display-block">Tipo Cliente:</label>
-                        <select asp-for="TypoCliente" id="clientes" asp-items="Html.GetEnumSelectList<CustomEnums.TypoClienteEnum>()"></select>
-                        <span asp-validation-for="TypoCliente" class="text-danger"></span>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Location, labelText: "Location", htmlAttributes: new { style = "color: Black" })
+                        @Html.CheckBoxFor(x => x.Location)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.WorkingCapital, labelText: "WorkingCapital", htmlAttributes: new { style = "color: Black" })
+                        @Html.CheckBoxFor(x => x.WorkingCapital)
                     </div>
 
 
@@ -387,11 +395,11 @@
 
             var markup =
                 "<tr><td><input type='checkbox' name='record'></td>" +
-                "<td><input name='firstName' type='hidden'  value='" + name + "'/>" + name + "</td>" +
-                "<td><input name='lastName' type='hidden'  value='" + lastName + "'/>" + lastName + "</td>" +
-                "<td><input name='typoRep' type='hidden'  value='" + typoRep + "'/>" + typoRep + "</td>" +
-                "<td><input name='typoDoc' type='hidden'  value='" + typoDoc + "'/>" + typoDoc + "</td>" +
-                "<td><input name='numDoc' type='hidden'  value='" + numeroDoc + "'/>" + numeroDoc + "</td> </tr>"
+                "<td><input name='FirstNameTable' type='hidden'  value='" + name + "'/>" + name + "</td>" +
+                "<td><input name='FirstLastNameTable' type='hidden'  value='" + lastName + "'/>" + lastName + "</td>" +
+                "<td><input name='TypoRepresentanteTable' type='hidden'  value='" + typoRep + "'/>" + typoRep + "</td>" +
+                "<td><input name='TypoDocumentoTable' type='hidden'  value='" + typoDoc + "'/>" + typoDoc + "</td>" +
+                "<td><input name='NumeroDocTable' type='hidden'  value='" + numeroDoc + "'/>" + numeroDoc + "</td> </tr>"
 
             //"<tr><td><input type='checkbox' name='record'></td><td><input name='test' type='hidden'  value='" + name + "'/>" + name + "</td> <td>" + typoRep + "</td> <td>" + typoDoc + "</td> <td>" + numeroDoc + "</td> </tr>";
             $("table tbody").append(markup);
@@ -400,11 +408,11 @@
             console.log(name + "this is name");
 
             //to clear the input values
-            name = $("#firstName").val('');
-            lastName = $("#lastName").val('');
-            lastName = $("#typorepresentante").val('');
-            typoDoc = $("#typodocumento").val('');
-            numeroDoc = $("#numerodocumento").val('');
+            var name = $("#firstName").val('');
+            var lastName = $("#lastName").val('');
+            var lastName = $("#typorepresentante").val('');
+            var typoDoc = $("#typodocumento").val('');
+            var numeroDoc = $("#numerodocumento").val('');
 
             console.log(name + "thi is nameafter");
             console.log(lastName + "this is lastnameafter");
@@ -446,7 +454,6 @@
     </script>*@
 
 @*this functions is used to remove representatives from the table*@
-
 
 
 

@@ -129,7 +129,7 @@ namespace UserRoles.Models
         [RegularExpression(@"^[0-9]{0,11}$", ErrorMessage = "error Message ")]
         public string NumeroDoc { get; set; }
 
-        //maybe we do not need to added it in the table we just use the discriminator
+        //we do not need it can get from table using the discriminator
         //typo de persona
         [Required(ErrorMessage = "Seleccione una persobna")]
         public CustomEnums.TypoPersonaEnum TypoPersona { get; set; }
@@ -140,7 +140,11 @@ namespace UserRoles.Models
         //typo cliente working capital
         public CustomEnums.TypoClienteWCEnum TypoClienteWC { get; set; }
 
-        
+        public bool Atm { get; set; }
+
+        public bool Location { get; set; }
+
+        public bool WorkingCapital { get; set; }
 
 
 
