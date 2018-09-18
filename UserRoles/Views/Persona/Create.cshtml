@@ -48,10 +48,18 @@
                     </div>
                     @*this generates a dropdown list try to make it a radio button check*@
                     <div class="form-group">
+                        @Html.LabelFor(x => x.Atm, labelText: "ATM", htmlAttributes: new { style = "color: Black" })
+                        @Html.CheckBoxFor(x => x.Atm)
+                    </div>
 
-                        <label asp-for="TypoCliente" class="control add-display-block">Tipo Cliente:</label>
-                        <select asp-for="TypoCliente" id="clientes" asp-items="Html.GetEnumSelectList<CustomEnums.TypoClienteEnum>()"></select>
-                        <span asp-validation-for="TypoCliente" class="text-danger"></span>
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Location, labelText: "Location", htmlAttributes: new { style = "color: Black" })
+                        @Html.CheckBoxFor(x => x.Location)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.WorkingCapital, labelText: "WorkingCapital", htmlAttributes: new { style = "color: Black" })
+                        @Html.CheckBoxFor(x => x.WorkingCapital)
                     </div>
 
 
@@ -378,45 +386,6 @@
 <script>
 
     $(document).ready(function () {
-        console.log("i am here");
-        $('input[name=TypoPersona]').change(function (e) {
-            let value = e.target.value.trim()
-            console.log("the val is " + value);
-            switch (value) {
-                case 'Fisica':
-                    $('.form-firstname').css("display", "block");
-                    $('.form-secondname').css("display", "block");
-                    $('.form-firstlastname').css("display", "block");
-                    $('.form-secondlastname').css("display", "block");
-                    $('.form-typodocumento').css("display", "block");
-                    $('.form-numdocumento').css("display", "block");
-                    $('.form-razon').css("display", "none");
-                    $('.form-representantes').css("display", "none");
-
-
-                    break;
-
-                case 'Juridica':
-                    $('.form-firstname').css("display", "none");
-                    $('.form-secondname').css("display", "none");
-                    $('.form-firstlastname').css("display", "none");
-                    $('.form-secondlastname').css("display", "none");
-                    $('.form-typodocumento').css("display", "block");
-                    $('.form-numdocumento').css("display", "block");
-                    $('.form-razon').css("display", "block");
-                    $('.form-representantes').css("display", "block");
-                    $("#street").val('');
-                    $("#numeroDoc").val('');
-                    $("#zip").val('');
-                    break;
-            }
-        })
-    })
-</script>
-
-<script>
-
-    $(document).ready(function () {
         $(".add-row").click(function () {
             var name = $("#firstName").val();
             var lastName = $("#lastName").val();
@@ -485,9 +454,6 @@
     </script>*@
 
 @*this functions is used to remove representatives from the table*@
-
-
-
 
 
 

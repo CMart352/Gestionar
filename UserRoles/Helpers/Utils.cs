@@ -33,7 +33,9 @@ namespace UserRoles.Helpers
                 ((PersonaFisica)(object)objmodel).SecondName = ((PersonaFormViewModel)(object)objviewmodel).SecondName;
                 ((PersonaFisica)(object)objmodel).FirstLastName = ((PersonaFormViewModel)(object)objviewmodel).FirstLastName;
                 ((PersonaFisica)(object)objmodel).SecondLastName = ((PersonaFormViewModel)(object)objviewmodel).SecondLastName;
-                ((PersonaFisica)(object)objmodel).TypoPersona = ((PersonaFormViewModel)(object)objviewmodel).TypoPersona;
+                ((PersonaFisica)(object)objmodel).Atm = ((PersonaFormViewModel)(object)objviewmodel).Atm;
+                ((PersonaFisica)(object)objmodel).Location = ((PersonaFormViewModel)(object)objviewmodel).Location;
+                ((PersonaFisica)(object)objmodel).WorkingCapital = ((PersonaFormViewModel)(object)objviewmodel).WorkingCapital;
             }
             else if (objmodel is PersonaJuridica && objviewmodel is PersonaFormViewModel)
             {
@@ -48,7 +50,9 @@ namespace UserRoles.Helpers
                 ((PersonaJuridica)(object)objmodel).HomePhone = ((PersonaFormViewModel)(object)objviewmodel).HomePhone;
                 ((PersonaJuridica)(object)objmodel).CellPhone = ((PersonaFormViewModel)(object)objviewmodel).CellPhone;
                 ((PersonaJuridica)(object)objmodel).RazonSocial = ((PersonaFormViewModel)(object)objviewmodel).RazonSocial;
-                ((PersonaJuridica)(object)objmodel).TypoPersona = ((PersonaFormViewModel)(object)objviewmodel).TypoPersona;
+                ((PersonaJuridica)(object)objmodel).Atm = ((PersonaFormViewModel)(object)objviewmodel).Atm;
+                ((PersonaJuridica)(object)objmodel).Location = ((PersonaFormViewModel)(object)objviewmodel).Location;
+                ((PersonaJuridica)(object)objmodel).WorkingCapital = ((PersonaFormViewModel)(object)objviewmodel).WorkingCapital;
 
             }
             return objmodel;
