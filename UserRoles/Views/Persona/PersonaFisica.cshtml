@@ -46,10 +46,18 @@
                 {
                      <tr>
                          <td>
-                             @item.FirstName @item.FirstLastName
+                              @Html.ActionLink(item.FirstName + " " + item.FirstLastName, "Details", "Persona", new {id = item.PersonId})
                          </td>
                          <td>
-                             @item.Zip @item.City @item.Street @item.Aparment
+                             @if (item.Zip != 0)
+                             {
+                                 @item.Zip
+                             }
+                             @item.City @item.Street
+                             @if (item.Aparment != 0)
+                             {
+                                 @item.Aparment
+                             }
                          </td>
                          <td>
                              @item.Email

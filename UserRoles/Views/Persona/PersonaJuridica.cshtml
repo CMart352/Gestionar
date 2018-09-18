@@ -52,10 +52,17 @@
                         @item.RazonSocial
                     </td>
                     <td>
-                        @item.City @item.Street @item.Aparment
+                        @item.City @item.Street
+                        @if (item.Aparment != 0)
+                        {
+                            @item.Aparment
+                        }
                     </td>
                     <td>
-                        @item.Zip
+                        @if (item.Zip != 0)
+                        {
+                            @item.Zip
+                        }
                     </td>
                     <td>
                         @item.Email
@@ -81,7 +88,6 @@
                      {
                         <td class="a-block-link"><i class="fas fa-times-circle"></i> Denied</td>
                      }
-
                     </tr>
                 }
             </tbody>
