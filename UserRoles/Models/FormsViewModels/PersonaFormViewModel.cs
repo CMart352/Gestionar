@@ -141,7 +141,11 @@ namespace UserRoles.Models.FormsViewModels
         //typo cliente working capital
         public CustomEnums.TypoClienteWCEnum TypoClienteWC { get; set; }
 
+        public bool Atm { get; set; }
 
+        public bool Location { get; set; }
+
+        public bool WorkingCapital { get; set; }
 
 
 
