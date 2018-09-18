@@ -1,10 +1,67 @@
 ﻿@model UserRoles.Models.Persona
-
 @{
     ViewData["Title"] = "Details";
+    var type = ViewData["type"];
 }
 
-<h2>Details</h2>
+<div class="persona-details">
+    <div class="container">
+        <h2 class="h2-header">Details</h2>
+        <hr />
+        <div class="bordered-box">
+            @if (type == "fisica")
+            {
+                <h1>fisica</h1>
+            }
+            @if (type == "juridica")
+            {
+                <h1>juridica</h1>
+            }
+            <div class="mb-2">
+                <strong>Nombre:</strong>
+                <span>
+
+                </span>
+            </div>
+            <div class="mb-2">
+                <strong>Typo Cliente:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Typo Documento:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Numero Documento:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Address:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Zip Code:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Country:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>State:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Email:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Web:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Home Phone:</strong>
+            </div>
+            <div class="mb-2">
+                <strong>Cell Phone:</strong>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@*<h2>Details</h2>
 
 <div>
     <h4>Persona</h4>
@@ -87,4 +144,4 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model.PersonId">Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@

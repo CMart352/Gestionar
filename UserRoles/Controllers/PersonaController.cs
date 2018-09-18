@@ -11,6 +11,7 @@ using UserRoles.Data;
 using UserRoles.Helpers;
 using UserRoles.Models;
 using UserRoles.Models.FormsViewModels;
+using UserRoles.Models.ViewModels;
 using UserRoles.Repositories.Interface;
 
 
@@ -20,16 +21,20 @@ namespace UserRoles.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IPersonaRepository _personaRepository;
+        private readonly IPersonaFisicaRepository _personaFisicaRepository;
+        private readonly IPersonaJuridicaRepository _personaJuridicaRepository;
         private readonly ICountryRepository _countryRepository;
         private readonly IStateRepository _stateRepository;
         private readonly ICityRepository _cityRepository;
 
 
-        public PersonaController(ApplicationDbContext context, IPersonaRepository personaRepository, ICountryRepository countryRepository, 
-                                IStateRepository stateRepository, ICityRepository cityRepository)
+        public PersonaController(ApplicationDbContext context, IPersonaRepository personaRepository, IPersonaFisicaRepository personaFisicaRepository, IPersonaJuridicaRepository personaJuridicaRepository,
+            ICountryRepository countryRepository, IStateRepository stateRepository, ICityRepository cityRepository)
         {
             _context = context;
             _personaRepository = personaRepository;
+            _personaFisicaRepository = personaFisicaRepository;
+            _personaJuridicaRepository = personaJuridicaRepository;
             _countryRepository = countryRepository;
             _stateRepository = stateRepository;
             _cityRepository = cityRepository;
@@ -246,14 +251,26 @@ namespace UserRoles.Controllers
 
         public IActionResult PersonaFisica()
         {
-            var model = _personaRepository.All();
+            var fisicaList = _personaFisicaRepository.GetPersonaFisicas();
+
+            var model = new PersonaViewModel
+            {
+                PersonaFisica = fisicaList
+            };
 
             return View(model);
         }
 
-        public async Task<IActionResult> PersonaJuridica()
+        public IActionResult PersonaJuridica()
         {
-            return View();
+            var juridicaList = _personaJuridicaRepository.GetPersonaJuridicas();
+
+            var model = new PersonaViewModel
+            {
+                PersonaJuridicas = juridicaList
+            };
+
+            return View(model);
         }
 
         private bool PersonaExists(int id)
