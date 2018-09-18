@@ -13,5 +13,12 @@ namespace UserRoles.Repositories.Persistance
         public PersonaJuridicaRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public List<PersonaJuridica> GetPersonaJuridicas()
+        {
+            var personas = Table.OfType<PersonaJuridica>().ToList();
+
+            return personas;
+        }
     }
 }

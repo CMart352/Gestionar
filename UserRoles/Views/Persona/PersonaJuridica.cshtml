@@ -1,8 +1,8 @@
-﻿
+﻿@model UserRoles.Models.ViewModels.PersonaViewModel
+@using UserRoles.Models.FormsViewModels
 @{
-    ViewData["Title"] = "PersonaJuridica";
+    ViewData["Title"] = "Persona Juridica";
 }
-
 
 <div class="persona-juridica">
     <div class="container">
@@ -45,42 +45,45 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="#">Carl Bucks</a></td>
-                    <td>123 Fake Street</td>
-                    <td>12345</td>
-                    <td>CarlLovesBucks@bucks.com</td>
-                    <td>5555555555</td>
-                    <td>7777777777</td>
-                    <td>ATM<br />Working Capital</td>
-                    <td class="a-blue-link"><i class="far fa-check-circle"></i> Approved</td>
-                </tr>
-                <tr>
-                    <td><a href="#">Jenny Waiters</a></td>
-                    <td>123 BungleBurg</td>
-                    <td>54321</td>
-                    <td>ForeverWaiting@waiters.net</td>
-                    <td>5555555555</td>
-                    <td>7777777777</td>
-                    <td>Location</td>
-                    <td class="a-yellow-link"><i class="fas fa-circle"></i> Pending</td>
-                </tr>
-                <tr>
-                    <td><a href="#">Jimmy No'Bucks</a></td>
-                    <td>Hobotown</td>
-                    <td>54321</td>
-                    <td>CanIHaveABuck@please.biz</td>
-                    <td>5555555555</td>
-                    <td>7777777777</td>
-                    <td>Working Capital</td>
-                    <td class="a-block-link"><i class="fas fa-times-circle"></i> Denied</td>
-                </tr>
-                @*@foreach (var item in Model.PersonaFisica)
+                @foreach (var item in Model.PersonaJuridicas)
                 {
-                    <tr>
-                        <td></td>
+                <tr>
+                    <td>
+                        @item.RazonSocial
+                    </td>
+                    <td>
+                        @item.City @item.Street @item.Aparment
+                    </td>
+                    <td>
+                        @item.Zip
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.HomePhone
+                    </td>
+                    <td>
+                        @item.CellPhone
+                    </td>
+                    <td>
+
+                    </td>
+                    @if (item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Pending)
+                     {
+                        <td class="a-yellow-link"><i class="fas fa-circle"></i> Pending</td>
+                     }
+                    @if (item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Aproved)
+                     {
+                        <td class="a-blue-link"><i class="far fa-check-circle"></i> Approved</td>
+                     }
+                    @if (item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Denied)
+                     {
+                        <td class="a-block-link"><i class="fas fa-times-circle"></i> Denied</td>
+                     }
+
                     </tr>
-                }*@
+                }
             </tbody>
         </table>
     </div>

@@ -8,6 +8,7 @@ namespace UserRoles.Repositories.Interface
 {
     public interface IPersonaFisicaRepository : IGenericRepository<PersonaFisica>
     {
+        List<PersonaFisica> GetPersonaFisicas();
     }
 
 }

@@ -14,6 +14,11 @@ namespace UserRoles.Repositories.Persistance
         {
         }
 
+        public List<PersonaFisica> GetPersonaFisicas()
+        {
+            var personas = Table.OfType<PersonaFisica>().ToList();
 
+            return personas;
+        }
     }
 }
