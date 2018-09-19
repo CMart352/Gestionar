@@ -1,4 +1,5 @@
-﻿@model UserRoles.Models.Persona
+﻿@model UserRoles.Models.ViewModels.PersonaDetailViewModel
+@using UserRoles.Models.FormsViewModels
 @{
     ViewData["Title"] = "Details";
     var type = ViewData["type"];
@@ -6,142 +7,192 @@
 
 <div class="persona-details">
     <div class="container">
-        <h2 class="h2-header">Details</h2>
-        <hr />
+        <h2 class="h2-header h2-center">Details</h2>
         <div class="bordered-box">
-            @if (type == "fisica")
-            {
-                <h1>fisica</h1>
-            }
-            @if (type == "juridica")
-            {
-                <h1>juridica</h1>
-            }
-            <div class="mb-2">
-                <strong>Nombre:</strong>
-                <span>
+            <div class="mb-2 row">
+                @if (Model.Razonsocial == null)
+                {
+                    <div class="col-md-4">
+                        <div class="font-weight-bold">Nombre: </div>
+                    </div>
+                    <div class="col-md-8">
+                        <span>
+                            @Model.FirstName
+                        </span>
 
-                </span>
+                        @if (Model.SecondFirstName != null)
+                        {
+                            <span> @Model.SecondFirstName </span>
+                        }
+
+                        <span> @Model.LastName </span>
+
+                        @if (Model.SecondLastName != null)
+                        {
+                            <span> @Model.SecondLastName </span>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-4">
+                        <div class="font-weight-bold">Razon Social: </div>
+                    </div>
+                    <div class="col-md-8">
+                        <span>@Model.Razonsocial</span>
+                    </div>
+                }
             </div>
-            <div class="mb-2">
-                <strong>Typo Cliente:</strong>
+            <hr />
+            <div class="mb-2 row">
+                <div class="col-md-4 font-weight-bold">
+                    Typo Cliente:
+                </div>
+                <div class="col-md-8">
+                    @if (Model.ATM)
+                    {
+                        <span><i class="fas fa-desktop"></i> ATM </span>
+                        <br />
+
+                    }
+                    @if (Model.Location)
+                    {
+                        <span><i class="fas fa-home"></i>  Location </span>
+                        <br />
+                    }
+                    @if (Model.WorkingCapital)
+                    {
+                        <span><i class="fas fa-dollar-sign"></i> Working Capital </span>
+                    }
+                </div>
             </div>
-            <div class="mb-2">
-                <strong>Typo Documento:</strong>
+            <hr />
+            <div class="mb-2 row">
+                <div class="col-md-4">
+                    <div class="font-weight-bold">Address: </div>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Calle</span>
+                    @if (Model.Numero != 0)
+                    {
+                        <span> @Model.Numero </span>
+                    }
+                </div>
             </div>
-            <div class="mb-2">
-                <strong>Numero Documento:</strong>
+            <hr />
+            @if (Model.Zipcode != 0)
+            {
+                <div class="mb-2 row">
+                    <div class="col-md-4">
+                        <div class="font-weight-bold">Zip Code:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <span> @Model.Zipcode </span>
+                    </div>
+                </div>
+                <hr />
+            }
+            @if (Model.City != null)
+            {
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="font-weight-bold">City: </div>
+                        </div>
+                        <div class="col-md-8">
+                            <span>@Model.City</span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+            @if (Model.State != null)
+            {
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="font-weight-bold">State: </div>
+                        </div>
+                        <div class="col-md-8">
+                            <span>@Model.State</span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+            <div class="mb-2 row">
+                <div class="col-md-4">
+                    <div class="font-weight-bold">Email:</div>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Email</span>
+                </div>
             </div>
-            <div class="mb-2">
-                <strong>Address:</strong>
+            <hr />
+            @if (Model.Web != null)
+            {
+                <div class="mb-2">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="font-weight-bold">Web: </div>
+                        </div>
+                        <div class="col-md-8">
+                            <span>@Model.Web</span>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+            <div class="mb-2 row">
+                <div class="col-md-4">
+                    <div class="font-weight-bold">Home Phone: </div>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Homephone</span>
+                </div>
             </div>
-            <div class="mb-2">
-                <strong>Zip Code:</strong>
+            <hr />
+            <div class="mb-2 row">
+                <div class="col-md-4">
+                    <div class="font-weight-bold">Cell Phone: </div>
+                </div>
+                <div class="col-md-8">
+                    <span>@Model.Cellphone</span>
+                </div>
             </div>
-            <div class="mb-2">
-                <strong>Country:</strong>
+            <hr />
+            <div class="mb-2 row">
+                <div class="col-md-4">
+                    <div class="font-weight-bold">Status: </div>
+                </div>
+                <div class="col-md-8">
+                    @if (Model.Status == CustomEnums.TypoStatusClienteEnum.Pending)
+                    {
+                        <span class="a-yellow-link"><i class="fas fa-circle"></i> Pending</span>
+                    }
+                    @if (Model.Status == CustomEnums.TypoStatusClienteEnum.Aproved)
+                    {
+                        <span class="a-blue-link"><i class="far fa-check-circle"></i> Approved</span>
+                    }
+                    @if (Model.Status == CustomEnums.TypoStatusClienteEnum.Denied)
+                    {
+                        <span class="a-block-link"><i class="fas fa-times-circle"></i> Denied</span>
+                    }
+                </div>
             </div>
-            <div class="mb-2">
-                <strong>State:</strong>
-            </div>
-            <div class="mb-2">
-                <strong>Email:</strong>
-            </div>
-            <div class="mb-2">
-                <strong>Web:</strong>
-            </div>
-            <div class="mb-2">
-                <strong>Home Phone:</strong>
-            </div>
-            <div class="mb-2">
-                <strong>Cell Phone:</strong>
+            <hr />
+            <div class="mt-4 text-right button-row">
+                @if (Model.Razonsocial == null)
+                {
+                    @Html.ActionLink("Return to list", "PersonaFisica", "Persona", null, new { @class = "btn btn-outline-secondary" })
+                }
+                else
+                {
+                    @Html.ActionLink("Return to list", "PersonaJuridica", "Persona", null, new { @class = "btn btn-outline-secondary" })
+                }
             </div>
         </div>
+
     </div>
 
 </div>
-
-@*<h2>Details</h2>
-
-<div>
-    <h4>Persona</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Street)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Street)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Numero)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Floor)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Floor)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Aparment)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Aparment)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Zip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Zip)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Web)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Web)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HomePhone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HomePhone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CellPhone)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CellPhone)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumeroDoc)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumeroDoc)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.City.Name)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.PersonId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>*@

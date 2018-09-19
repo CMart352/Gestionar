@@ -49,7 +49,7 @@
                 {
                 <tr>
                     <td>
-                        @item.RazonSocial
+                        @Html.ActionLink(item.RazonSocial, "Details", "Persona", new { id = item.PersonId })
                     </td>
                     <td>
                         @item.City @item.Street

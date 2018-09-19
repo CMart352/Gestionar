@@ -20,5 +20,17 @@ namespace UserRoles.Repositories.Persistance
 
             return personas;
         }
+
+        public PersonaFisica GetPersonaFisicaById(int? personaId)
+        {
+            var persona = SingleOrDefaultAsync(p => p.PersonId == personaId).Result;
+
+            if(persona == null)
+            {
+                return null;
+            }
+
+            return persona;
+        }
     }
 }
