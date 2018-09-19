@@ -48,22 +48,37 @@ namespace UserRoles.Controllers
         }
 
         // GET: Persona/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var persona = await _context.Personas
-                .Include(p => p.City)
-                .SingleOrDefaultAsync(m => m.PersonId == id);
-            if (persona == null)
+            //var persona = await _context.Personas
+            //    .Include(p => p.City)
+            //    .SingleOrDefaultAsync(m => m.PersonId == id);
+
+            var personaFisica = _personaFisicaRepository.GetPersonaFisicaById(id);
+            var personaJuridica = _personaJuridicaRepository.GetPersonaJuridicaById(id);
+
+            if (personaFisica == null && personaJuridica == null)
             {
                 return NotFound();
             }
 
-            return View(persona);
+            
+            //var city = _personaRepository.GetCityByPersonaId(id);
+            if(personaFisica != null)
+            {
+                var model = SetUpDetailViewModel(personaFisica, null);
+                return View(model);
+            }
+            else
+            {
+                var model = SetUpDetailViewModel(null, personaJuridica);
+                return View(model);
+            }
         }
         //been updated with th
         // GET: Persona/Create
@@ -276,6 +291,54 @@ namespace UserRoles.Controllers
         private bool PersonaExists(int id)
         {
             return _context.Personas.Any(e => e.PersonId == id);
+        }
+
+        //Helper
+        public PersonaDetailViewModel SetUpDetailViewModel(PersonaFisica personaFisica, PersonaJuridica personaJuridica)
+        {
+            if(personaFisica != null)
+            {
+                var model = new PersonaDetailViewModel
+                {
+                    FirstName = personaFisica.FirstName,
+                    SecondFirstName = personaFisica.SecondName,
+                    LastName = personaFisica.FirstLastName,
+                    SecondLastName = personaFisica.SecondLastName,
+                    Calle = personaFisica.Street,
+                    Numero = personaFisica.Numero,
+                    Zipcode = personaFisica.Zip,
+                    Homephone = personaFisica.HomePhone,
+                    Cellphone = personaFisica.CellPhone,
+                    Web = personaFisica.Web,
+                    Email = personaFisica.Email,
+
+                    ATM = personaFisica.Atm,
+                    Location = personaFisica.Location,
+                    WorkingCapital = personaFisica.WorkingCapital
+                };
+
+                return model;
+            }
+            else
+            {
+                var model = new PersonaDetailViewModel
+                {
+                    Razonsocial = personaJuridica.RazonSocial,
+                    Calle = personaJuridica.Street,
+                    Numero = personaJuridica.Numero,
+                    Zipcode = personaJuridica.Zip,
+                    Homephone = personaJuridica.HomePhone,
+                    Cellphone = personaJuridica.CellPhone,
+                    Web = personaJuridica.Web,
+                    Email = personaJuridica.Email,
+
+                    ATM = personaJuridica.Atm,
+                    Location = personaJuridica.Location,
+                    WorkingCapital = personaJuridica.WorkingCapital
+                };
+
+                return model;
+            }
         }
     }
 }

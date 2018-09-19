@@ -9,5 +9,6 @@ namespace UserRoles.Repositories.Interface
     public interface IPersonaJuridicaRepository : IGenericRepository<PersonaJuridica>
     {
         List<PersonaJuridica> GetPersonaJuridicas();
+        PersonaJuridica GetPersonaJuridicaById(int? personaId);
     }
 }

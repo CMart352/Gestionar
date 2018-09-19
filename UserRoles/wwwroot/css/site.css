@@ -149,16 +149,29 @@ button.btn-signin {
     margin-top: 60px;
 }
 
+.h2-center{
+    text-align: center;
+}
+
 .btn-save{
     margin-right: 20px;
 }
 
+.font-size-one-five{
+    font-size: 1.5rem;
+}
+
+.details-text {
+    color: #6c757d !important;
+}
 
 .bordered-box {
     border: 1px solid var(--gray-light);
     padding: 2rem;
     border-radius: .9rem;
-    margin-bottom: 2rem
+    margin-bottom: 2rem;
+    width: 60%;
+    margin: auto;
 }
 
 .btn-outline-blue {
@@ -503,11 +516,39 @@ a.dropdown-item {
 
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 699px) {
 
     /* Login Screen */
     .signin{
         padding: 1em;
     }
+
+    /* Details Page */
+    .bordered-box{
+        width: 100%;
+    }
 }
 
+@media screen and (max-width: 799px) and (min-width: 700px) {
+
+    /* Details Page */
+    .bordered-box {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 899px) and (min-width: 800px) {
+
+    /* Details Page */
+    .bordered-box {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 999px) and (min-width: 900px){
+
+    /* Details Page */
+    .bordered-box {
+        width: 70%;
+    }
+}
