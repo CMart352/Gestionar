@@ -8,6 +8,7 @@ namespace UserRoles.Models.ViewModels
 {
     public class PersonaDetailViewModel
     {
+        public int PersonId { get; set; }
         public string FirstName { get; set; }
         public string SecondFirstName { get; set; }
         public string LastName { get; set; }

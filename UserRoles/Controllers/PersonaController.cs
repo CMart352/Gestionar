@@ -173,7 +173,15 @@ namespace UserRoles.Controllers
                 //i can pass the view model to persona fisic o pasar por el contructo que cree en persona fisica todos los parameters de esa fucnion 
                 await _personaRepository.Add(person);
                // //        await _personaRepository.Save();
-                return RedirectToAction(nameof(Index));
+               if(_personaFisicaRepository.Exists(p => p.PersonId == person.PersonId))
+                {
+                    return RedirectToAction(nameof(PersonaFisica));
+                }
+                else
+                {
+                    return RedirectToAction(nameof(PersonaJuridica));
+                }
+                //return RedirectToAction(nameof(Index));
             }
             //ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", persona.CityId);
             IEnumerable<Country> listcountries = await _countryRepository.All();
@@ -290,6 +298,32 @@ namespace UserRoles.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> ApprovePersona(int personId)
+        {
+            try
+            {
+                await _personaRepository.ApprovePersona(personId);
+                return RedirectToAction("Details", new { id = personId});
+            }
+            catch (Exception e)
+            {
+                return View("Error", new ErrorViewModel { RequestId = e.Message });
+            }
+        }
+
+        public async Task<IActionResult> DenyPersona(int personId)
+        {
+            try
+            {
+                await _personaRepository.DenyPersona(personId);
+                return RedirectToAction("Details", new { id = personId });
+            }
+            catch (Exception e)
+            {
+                return View("Error", new ErrorViewModel { RequestId = e.Message });
+            }
+        }
+
         private bool PersonaExists(int id)
         {
             return _context.Personas.Any(e => e.PersonId == id);
@@ -302,6 +336,7 @@ namespace UserRoles.Controllers
             {
                 var model = new PersonaDetailViewModel
                 {
+                    PersonId = personaFisica.PersonId,
                     FirstName = personaFisica.FirstName,
                     SecondFirstName = personaFisica.SecondName,
                     LastName = personaFisica.FirstLastName,
@@ -313,6 +348,7 @@ namespace UserRoles.Controllers
                     Cellphone = personaFisica.CellPhone,
                     Web = personaFisica.Web,
                     Email = personaFisica.Email,
+                    Status = personaFisica.StatusCliente,
 
                     ATM = personaFisica.Atm,
                     Location = personaFisica.Location,
@@ -327,6 +363,7 @@ namespace UserRoles.Controllers
 
                 var model = new PersonaDetailViewModel
                 {
+                    PersonId = personaJuridica.PersonId,
                     Razonsocial = personaJuridica.RazonSocial,
                     Calle = personaJuridica.Street,
                     Numero = personaJuridica.Numero,
@@ -335,6 +372,7 @@ namespace UserRoles.Controllers
                     Cellphone = personaJuridica.CellPhone,
                     Web = personaJuridica.Web,
                     Email = personaJuridica.Email,
+                    Status = personaJuridica.StatusCliente,
 
                     Representantes = personaJuridica.Representantes,
                     ATM = personaJuridica.Atm,
