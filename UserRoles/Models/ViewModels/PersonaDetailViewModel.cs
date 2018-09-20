@@ -24,7 +24,7 @@ namespace UserRoles.Models.ViewModels
         public CustomEnums.TypoStatusClienteEnum Status { get; set; }
 
         public string Razonsocial { get; set; }
-        public List<Representante> Representantes { get; set; }
+        public ICollection<Representante> Representantes { get; set; }
         public bool ATM { get; set; }
         public bool Location { get; set; }
         public bool WorkingCapital { get; set; }

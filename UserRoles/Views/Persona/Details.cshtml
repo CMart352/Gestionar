@@ -180,6 +180,54 @@
                     }
                 </div>
             </div>
+                <hr />
+                <div class="mb-2">
+                    @if (Model.Representantes != null)
+                    {
+                        @if (Model.Representantes.Count <= 0)
+                        {
+                            <div class="font-weight-bold">
+                                No representantes
+                            </div>
+                            
+                        }
+                        else
+                        {
+                            <div class="font-weight-bold">Representantes</div>
+                                <table id="UserSellers"
+                                       class="table table-striped table-responsive-lg"
+                                       data-toggle="table"
+                                       data-pagination="true"
+                                       data-page-list="[5]"
+                                       data-search-align="left">
+                                <thead>
+                                    <tr>
+                                        <th data-sortable="true" data-field="Name" class="th-sortable">
+                                            Name
+                                        </th>
+                                        <th>
+                                            Typo Documento
+                                        </th>
+                                        <th>
+                                            Documento Numero
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Representantes)
+                                    {
+                                        <tr>
+                                            <td>@item.FirstName @item.FirstLastName</td>
+                                            <td>@item.TypoDocumento</td>
+                                            <td>@item.NumeroDoc</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                </table>
+                        }
+
+                    }
+                </div>
             <hr />
             <div class="mt-4 text-right button-row">
                 @if (Model.Razonsocial == null)

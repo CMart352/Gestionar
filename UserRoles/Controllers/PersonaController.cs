@@ -26,10 +26,11 @@ namespace UserRoles.Controllers
         private readonly ICountryRepository _countryRepository;
         private readonly IStateRepository _stateRepository;
         private readonly ICityRepository _cityRepository;
+        private readonly IRepresentanteRepository _representanteRepository;
 
 
         public PersonaController(ApplicationDbContext context, IPersonaRepository personaRepository, IPersonaFisicaRepository personaFisicaRepository, IPersonaJuridicaRepository personaJuridicaRepository,
-            ICountryRepository countryRepository, IStateRepository stateRepository, ICityRepository cityRepository)
+            ICountryRepository countryRepository, IStateRepository stateRepository, ICityRepository cityRepository, IRepresentanteRepository representanteRepository)
         {
             _context = context;
             _personaRepository = personaRepository;
@@ -38,6 +39,7 @@ namespace UserRoles.Controllers
             _countryRepository = countryRepository;
             _stateRepository = stateRepository;
             _cityRepository = cityRepository;
+            _representanteRepository = representanteRepository;
         }
 
         // GET: Persona
@@ -321,6 +323,8 @@ namespace UserRoles.Controllers
             }
             else
             {
+                var representantes = _representanteRepository.GetAllRepresentantesById(personaJuridica.PersonId);
+
                 var model = new PersonaDetailViewModel
                 {
                     Razonsocial = personaJuridica.RazonSocial,
@@ -332,6 +336,7 @@ namespace UserRoles.Controllers
                     Web = personaJuridica.Web,
                     Email = personaJuridica.Email,
 
+                    Representantes = personaJuridica.Representantes,
                     ATM = personaJuridica.Atm,
                     Location = personaJuridica.Location,
                     WorkingCapital = personaJuridica.WorkingCapital
