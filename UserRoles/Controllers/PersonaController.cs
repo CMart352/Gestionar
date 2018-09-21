@@ -71,8 +71,9 @@ namespace UserRoles.Controllers
             //var city = _personaRepository.GetCityByPersonaId(id);
             if(personaFisica != null)
             {
-                var model = SetUpDetailViewModel(personaFisica, null);
-                return View(model);
+                var model1 = personaFisica.GetViewModel<PersonaDetailViewModel>();
+                //var model = SetUpDetailViewModel(personaFisica, null);
+                return View(model1);
             }
             else
             {
@@ -301,18 +302,18 @@ namespace UserRoles.Controllers
                 var model = new PersonaDetailViewModel
                 {
                     FirstName = personaFisica.FirstName,
-                    SecondFirstName = personaFisica.SecondName,
-                    LastName = personaFisica.FirstLastName,
+                    SecondName = personaFisica.SecondName,
+                    FirstLastName = personaFisica.FirstLastName,
                     SecondLastName = personaFisica.SecondLastName,
-                    Calle = personaFisica.Street,
+                    Street = personaFisica.Street,
                     Numero = personaFisica.Numero,
-                    Zipcode = personaFisica.Zip,
-                    Homephone = personaFisica.HomePhone,
-                    Cellphone = personaFisica.CellPhone,
+                    Zip = personaFisica.Zip,
+                    HomePhone = personaFisica.HomePhone,
+                    CellPhone = personaFisica.CellPhone,
                     Web = personaFisica.Web,
                     Email = personaFisica.Email,
 
-                    ATM = personaFisica.Atm,
+                    Atm = personaFisica.Atm,
                     Location = personaFisica.Location,
                     WorkingCapital = personaFisica.WorkingCapital
                 };
@@ -324,15 +325,15 @@ namespace UserRoles.Controllers
                 var model = new PersonaDetailViewModel
                 {
                     Razonsocial = personaJuridica.RazonSocial,
-                    Calle = personaJuridica.Street,
+                    Street = personaJuridica.Street,
                     Numero = personaJuridica.Numero,
-                    Zipcode = personaJuridica.Zip,
-                    Homephone = personaJuridica.HomePhone,
-                    Cellphone = personaJuridica.CellPhone,
+                    Zip = personaJuridica.Zip,
+                    HomePhone = personaJuridica.HomePhone,
+                    CellPhone = personaJuridica.CellPhone,
                     Web = personaJuridica.Web,
                     Email = personaJuridica.Email,
 
-                    ATM = personaJuridica.Atm,
+                    Atm = personaJuridica.Atm,
                     Location = personaJuridica.Location,
                     WorkingCapital = personaJuridica.WorkingCapital
                 };

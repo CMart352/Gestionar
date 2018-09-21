@@ -129,7 +129,7 @@ namespace UserRoles.Models.FormsViewModels
         public CustomEnums.TypoRepresentanteEnum TypoRepresentante { get; set; }
 
 
-        public IEnumerable<Representante> Representantes { get; set; }
+        public ICollection<Representante> Representantes { get; set; }
 
 
         [Required(ErrorMessage = "Seleccione una persobna")]

@@ -20,12 +20,12 @@
                             @Model.FirstName
                         </span>
 
-                        @if (Model.SecondFirstName != null)
+                        @if (Model.SecondName != null)
                         {
-                            <span> @Model.SecondFirstName </span>
+                            <span> @Model.SecondName </span>
                         }
 
-                        <span> @Model.LastName </span>
+                        <span> @Model.FirstLastName </span>
 
                         @if (Model.SecondLastName != null)
                         {
@@ -49,7 +49,7 @@
                     Typo Cliente:
                 </div>
                 <div class="col-md-8">
-                    @if (Model.ATM)
+                    @if (Model.Atm)
                     {
                         <span><i class="fas fa-desktop"></i> ATM </span>
                         <br />
@@ -72,7 +72,7 @@
                     <div class="font-weight-bold">Address: </div>
                 </div>
                 <div class="col-md-8">
-                    <span>@Model.Calle</span>
+                    <span>@Model.Street</span>
                     @if (Model.Numero != 0)
                     {
                         <span> @Model.Numero </span>
@@ -80,14 +80,14 @@
                 </div>
             </div>
             <hr />
-            @if (Model.Zipcode != 0)
+            @if (Model.Zip != 0)
             {
                 <div class="mb-2 row">
                     <div class="col-md-4">
                         <div class="font-weight-bold">Zip Code:</div>
                     </div>
                     <div class="col-md-8">
-                        <span> @Model.Zipcode </span>
+                        <span> @Model.Zip </span>
                     </div>
                 </div>
                 <hr />
@@ -148,7 +148,7 @@
                     <div class="font-weight-bold">Home Phone: </div>
                 </div>
                 <div class="col-md-8">
-                    <span>@Model.Homephone</span>
+                    <span>@Model.HomePhone</span>
                 </div>
             </div>
             <hr />
@@ -157,7 +157,7 @@
                     <div class="font-weight-bold">Cell Phone: </div>
                 </div>
                 <div class="col-md-8">
-                    <span>@Model.Cellphone</span>
+                    <span>@Model.CellPhone</span>
                 </div>
             </div>
             <hr />
