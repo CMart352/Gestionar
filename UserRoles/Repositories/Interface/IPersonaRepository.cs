@@ -8,6 +8,7 @@ namespace UserRoles.Repositories.Interface
 {
     public interface IPersonaRepository : IGenericRepository<Persona>
     {
-       
+        Task ApprovePersona(int personId);
+        Task DenyPersona(int personId);
     }
 }

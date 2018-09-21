@@ -8,5 +8,6 @@ namespace UserRoles.Repositories.Interface
 {
     public interface IRepresentanteRepository : IGenericRepository<Representante>
     {
+        ICollection<Representante> GetAllRepresentantesById(int personId);
     }
 }

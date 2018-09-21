@@ -13,5 +13,46 @@ namespace UserRoles.Repositories.Persistance
         public PersonaRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public async Task ApprovePersona(int personId)
+        {
+            try
+            {
+                var persona = SingleOrDefaultAsync(p => p.PersonId == personId).Result;
+
+                if(persona == null)
+                {
+                    throw new Exception("Persona no existen");
+                }
+
+                persona.StatusCliente = Models.FormsViewModels.CustomEnums.TypoStatusClienteEnum.Aproved;
+                await Save();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task DenyPersona(int personId)
+        {
+            try
+            {
+                var persona = SingleOrDefaultAsync(p => p.PersonId == personId).Result;
+
+                if (persona == null)
+                {
+                    throw new Exception("Persona no existen");
+                }
+
+                persona.StatusCliente = Models.FormsViewModels.CustomEnums.TypoStatusClienteEnum.Denied;
+                await Save();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }
+

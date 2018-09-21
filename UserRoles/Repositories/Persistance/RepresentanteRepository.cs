@@ -14,6 +14,11 @@ namespace UserRoles.Repositories.Persistance
         {
         }
 
-      
+        public ICollection<Representante> GetAllRepresentantesById(int personId)
+        {
+            var representantes = Table.Where(r => r.Juridico.PersonId == personId).ToList();
+
+            return representantes;
+        }
     }
 }
