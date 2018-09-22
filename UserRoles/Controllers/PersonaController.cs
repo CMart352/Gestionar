@@ -73,13 +73,18 @@ namespace UserRoles.Controllers
             //var city = _personaRepository.GetCityByPersonaId(id);
             if(personaFisica != null)
             {
-                var model = SetUpDetailViewModel(personaFisica, null);
-                return View(model);
+                var model1 = personaFisica.GetViewModel<PersonaDetailViewModel>();
+               // var model = SetUpDetailViewModel(personaFisica, null);
+                return View(model1);
             }
             else
             {
-                var model = SetUpDetailViewModel(null, personaJuridica);
-                return View(model);
+                //como el metodo recibe un this que es un object uno piuede pasar el objecto view model
+                //como parameter o lo puedo prepend ese objeto al function (public static T GetViewModel<T>(this object objmodel))
+                //(var model1 = utils.GetViewModel<PersonaDetailViewModel>(personaJuridica);
+                var model1 = personaJuridica.GetViewModel<PersonaDetailViewModel>();
+               // var model = SetUpDetailViewModel(null, personaJuridica);
+                return View(model1);
             }
         }
         //been updated with th
@@ -198,14 +203,41 @@ namespace UserRoles.Controllers
             {
                 return NotFound();
             }
+            var personaFisica = _personaFisicaRepository.GetPersonaFisicaById(id);
+            var personaJuridica = _personaJuridicaRepository.GetPersonaJuridicaById(id);
 
-            var persona = await _context.Personas.SingleOrDefaultAsync(m => m.PersonId == id);
-            if (persona == null)
+            if (personaFisica == null && personaJuridica == null)
             {
                 return NotFound();
             }
-            ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", persona.CityId);
-            return View(persona);
+
+
+            //var city = _personaRepository.GetCityByPersonaId(id);
+            if (personaFisica != null)
+            {
+                var model1 = personaFisica.GetViewModel<PersonaFormViewModel>();
+                // var model = SetUpDetailViewModel(personaFisica, null);
+                return View(model1);
+            }
+            else
+            {
+
+                //como el metodo recibe un this que es un object uno piuede pasar el objecto view model
+                //como parameter o lo puedo prepend ese objeto al function (public static T GetViewModel<T>(this object objmodel))
+                //(var model1 = utils.GetViewModel<PersonaDetailViewModel>(personaJuridica);
+                var model1 = personaJuridica.GetViewModel<PersonaFormViewModel>();
+                model1.TypoPersona = CustomEnums.TypoPersonaEnum.Juridica;
+                // var model = SetUpDetailViewModel(null, personaJuridica);
+                return View(model1);
+            }
+
+            //var persona = await _context.Personas.SingleOrDefaultAsync(m => m.PersonId == id);
+            //if (persona == null)
+            //{
+            //    return NotFound();
+            //}
+            //ViewData["CityId"] = new SelectList(_context.Cities, "Id", "Name", persona.CityId);
+            //return View(persona);
         }
 
         // POST: Persona/Edit/5
@@ -330,58 +362,58 @@ namespace UserRoles.Controllers
         }
 
         //Helper
-        public PersonaDetailViewModel SetUpDetailViewModel(PersonaFisica personaFisica, PersonaJuridica personaJuridica)
-        {
-            if(personaFisica != null)
-            {
-                var model = new PersonaDetailViewModel
-                {
-                    PersonId = personaFisica.PersonId,
-                    FirstName = personaFisica.FirstName,
-                    SecondFirstName = personaFisica.SecondName,
-                    LastName = personaFisica.FirstLastName,
-                    SecondLastName = personaFisica.SecondLastName,
-                    Calle = personaFisica.Street,
-                    Numero = personaFisica.Numero,
-                    Zipcode = personaFisica.Zip,
-                    Homephone = personaFisica.HomePhone,
-                    Cellphone = personaFisica.CellPhone,
-                    Web = personaFisica.Web,
-                    Email = personaFisica.Email,
-                    Status = personaFisica.StatusCliente,
+        //public PersonaDetailViewModel SetUpDetailViewModel(PersonaFisica personaFisica, PersonaJuridica personaJuridica)
+        //{
+        //    if(personaFisica != null)
+        //    {
+        //        var model = new PersonaDetailViewModel
+        //        {
+        //            PersonId = personaFisica.PersonId,
+        //            FirstName = personaFisica.FirstName,
+        //            SecondFirstName = personaFisica.SecondName,
+        //            LastName = personaFisica.FirstLastName,
+        //            SecondLastName = personaFisica.SecondLastName,
+        //            Calle = personaFisica.Street,
+        //            Numero = personaFisica.Numero,
+        //            Zipcode = personaFisica.Zip,
+        //            Homephone = personaFisica.HomePhone,
+        //            Cellphone = personaFisica.CellPhone,
+        //            Web = personaFisica.Web,
+        //            Email = personaFisica.Email,
+        //            Status = personaFisica.StatusCliente,
 
-                    ATM = personaFisica.Atm,
-                    Location = personaFisica.Location,
-                    WorkingCapital = personaFisica.WorkingCapital
-                };
+        //            ATM = personaFisica.Atm,
+        //            Location = personaFisica.Location,
+        //            WorkingCapital = personaFisica.WorkingCapital
+        //        };
 
-                return model;
-            }
-            else
-            {
-                var representantes = _representanteRepository.GetAllRepresentantesById(personaJuridica.PersonId);
+        //        return model;
+        //    }
+        //    else
+        //    {
+        //        var representantes = _representanteRepository.GetAllRepresentantesById(personaJuridica.PersonId);
 
-                var model = new PersonaDetailViewModel
-                {
-                    PersonId = personaJuridica.PersonId,
-                    Razonsocial = personaJuridica.RazonSocial,
-                    Calle = personaJuridica.Street,
-                    Numero = personaJuridica.Numero,
-                    Zipcode = personaJuridica.Zip,
-                    Homephone = personaJuridica.HomePhone,
-                    Cellphone = personaJuridica.CellPhone,
-                    Web = personaJuridica.Web,
-                    Email = personaJuridica.Email,
-                    Status = personaJuridica.StatusCliente,
+        //        var model = new PersonaDetailViewModel
+        //        {
+        //            PersonId = personaJuridica.PersonId,
+        //            Razonsocial = personaJuridica.RazonSocial,
+        //            Calle = personaJuridica.Street,
+        //            Numero = personaJuridica.Numero,
+        //            Zipcode = personaJuridica.Zip,
+        //            Homephone = personaJuridica.HomePhone,
+        //            Cellphone = personaJuridica.CellPhone,
+        //            Web = personaJuridica.Web,
+        //            Email = personaJuridica.Email,
+        //            Status = personaJuridica.StatusCliente,
 
-                    Representantes = personaJuridica.Representantes,
-                    ATM = personaJuridica.Atm,
-                    Location = personaJuridica.Location,
-                    WorkingCapital = personaJuridica.WorkingCapital
-                };
+        //            Representantes = personaJuridica.Representantes,
+        //            ATM = personaJuridica.Atm,
+        //            Location = personaJuridica.Location,
+        //            WorkingCapital = personaJuridica.WorkingCapital
+        //        };
 
-                return model;
-            }
-        }
+        //        return model;
+        //    }
+        //}
     }
 }

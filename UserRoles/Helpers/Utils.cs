@@ -56,7 +56,7 @@ namespace UserRoles.Helpers
         {
             T objviewmodel = new T();
 
-            if(objmodel is Persona)
+            if(objmodel is Persona && objviewmodel is PersonaDetailViewModel)
             {
                 ((PersonaDetailViewModel)(object)objviewmodel).PersonId = ((Persona)(object)objmodel).PersonId;
                 ((PersonaDetailViewModel)(object)objviewmodel).Street = ((Persona)(object)objmodel).Street;
@@ -68,6 +68,7 @@ namespace UserRoles.Helpers
                 ((PersonaDetailViewModel)(object)objviewmodel).CellPhone = ((Persona)(object)objmodel).CellPhone;
                 ((PersonaDetailViewModel)(object)objviewmodel).TypoDocumento = ((Persona)(object)objmodel).TypoDocumento;
                 ((PersonaDetailViewModel)(object)objviewmodel).NumeroDoc = ((Persona)(object)objmodel).NumeroDoc;
+                ((PersonaDetailViewModel)(object)objviewmodel).Status = ((Persona)(object)objmodel).StatusCliente;
                 ((PersonaDetailViewModel)(object)objviewmodel).Atm = ((Persona)(object)objmodel).Atm;
                 ((PersonaDetailViewModel)(object)objviewmodel).Location = ((Persona)(object)objmodel).Location;
                 ((PersonaDetailViewModel)(object)objviewmodel).WorkingCapital = ((Persona)(object)objmodel).WorkingCapital;
@@ -78,23 +79,48 @@ namespace UserRoles.Helpers
                     ((PersonaDetailViewModel)(object)objviewmodel).SecondName = ((PersonaFisica)(object)objmodel).SecondName;
                     ((PersonaDetailViewModel)(object)objviewmodel).FirstLastName = ((PersonaFisica)(object)objmodel).FirstLastName;
                     ((PersonaDetailViewModel)(object)objviewmodel).SecondLastName = ((PersonaFisica)(object)objmodel).SecondLastName;
-                    //((PersonaDetailViewModel)(object)objmodel).Street = ((PersonaFisica)(object)objviewmodel).Street;
-                    //((PersonaDetailViewModel)(object)objmodel).Numero = ((PersonaFisica)(object)objviewmodel).Numero;
-                    //((PersonaFisica)(object)objmodel).Floor = ((PersonaFormViewModel)(object)objviewmodel).Floor;
-                    //((PersonaFisica)(object)objmodel).Aparment = ((PersonaFormViewModel)(object)objviewmodel).Aparment;
-                    //((PersonaFisica)(object)objmodel).Zip = ((PersonaFormViewModel)(object)objviewmodel).Zip;
-                    //((PersonaFisica)(object)objmodel).CityId = ((PersonaFormViewModel)(object)objviewmodel).City;
-                    //((PersonaFisica)(object)objmodel).Email = ((PersonaFormViewModel)(object)objviewmodel).Email;
-
+                  
                 }
                 else if (objmodel is PersonaJuridica && objviewmodel is PersonaDetailViewModel)
                 {
-                    ((PersonaFormViewModel)(object)objviewmodel).RazonSocial = ((PersonaJuridica)(object)objmodel).RazonSocial;
+                    ((PersonaDetailViewModel)(object)objviewmodel).RazonSocial = ((PersonaJuridica)(object)objmodel).RazonSocial;
                     
 
                 }
             }
-         
+
+            else if (objmodel is Persona && objviewmodel is PersonaFormViewModel)
+            {
+                ((PersonaFormViewModel)(object)objviewmodel).PersonId = ((Persona)(object)objmodel).PersonId;
+                ((PersonaFormViewModel)(object)objviewmodel).Street = ((Persona)(object)objmodel).Street;
+                ((PersonaFormViewModel)(object)objviewmodel).Numero = ((Persona)(object)objmodel).Numero;
+                ((PersonaFormViewModel)(object)objviewmodel).Zip = ((Persona)(object)objmodel).Zip;
+                //((PersonaFormViewModel)(object)objviewmodel).CityId = ((Persona)(object)objmodel).CityId;
+                ((PersonaFormViewModel)(object)objviewmodel).Email = ((Persona)(object)objmodel).Email;
+                ((PersonaFormViewModel)(object)objviewmodel).HomePhone = ((Persona)(object)objmodel).HomePhone;
+                ((PersonaFormViewModel)(object)objviewmodel).CellPhone = ((Persona)(object)objmodel).CellPhone;
+                ((PersonaFormViewModel)(object)objviewmodel).TypoDocumento = ((Persona)(object)objmodel).TypoDocumento;
+                ((PersonaFormViewModel)(object)objviewmodel).NumeroDoc = ((Persona)(object)objmodel).NumeroDoc;
+               // ((PersonaFormViewModel)(object)objviewmodel).Status = ((Persona)(object)objmodel).StatusCliente;
+                ((PersonaFormViewModel)(object)objviewmodel).Atm = ((Persona)(object)objmodel).Atm;
+                ((PersonaFormViewModel)(object)objviewmodel).Location = ((Persona)(object)objmodel).Location;
+                ((PersonaFormViewModel)(object)objviewmodel).WorkingCapital = ((Persona)(object)objmodel).WorkingCapital;
+
+                if (objmodel is PersonaFisica && objviewmodel is PersonaFormViewModel)
+                {
+                    ((PersonaFormViewModel)(object)objviewmodel).FirstName = ((PersonaFisica)(object)objmodel).FirstName;
+                    ((PersonaFormViewModel)(object)objviewmodel).SecondName = ((PersonaFisica)(object)objmodel).SecondName;
+                    ((PersonaFormViewModel)(object)objviewmodel).FirstLastName = ((PersonaFisica)(object)objmodel).FirstLastName;
+                    ((PersonaFormViewModel)(object)objviewmodel).SecondLastName = ((PersonaFisica)(object)objmodel).SecondLastName;
+
+                }
+                else if (objmodel is PersonaJuridica && objviewmodel is PersonaFormViewModel)
+                {
+                    ((PersonaFormViewModel)(object)objviewmodel).RazonSocial = ((PersonaJuridica)(object)objmodel).RazonSocial;
+
+
+                }
+            }
             return objviewmodel;
         }
     }

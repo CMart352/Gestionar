@@ -49,7 +49,7 @@ namespace UserRoles.Models.ViewModels
 
         public CustomEnums.TypoStatusClienteEnum Status { get; set; }
 
-        public string Razonsocial { get; set; }
+        public string RazonSocial { get; set; }
 
         public List<Representante> Representantes { get; set; }
 

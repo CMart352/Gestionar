@@ -37,53 +37,65 @@
                         Typo Cliente
                     </th>
                     <th data-sortable="true" data-field="Status" class="th-sortable">
+                        Edit
+                    </th>
+                    <th data-sortable="true" data-field="Status" class="th-sortable">
                         Status
                     </th>
+
+                    @*<th data-sortable="true" data-field="Status" class="th-sortable">
+            Delete
+        </th>*@
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.PersonaFisica)
                 {
-                     <tr>
-                         <td>
-                              @Html.ActionLink(item.FirstName + " " + item.FirstLastName, "Details", "Persona", new {id = item.PersonId})
-                         </td>
-                         <td>
-                             @if (item.Zip != 0)
-                             {
-                                 @item.Zip
-                             }
-                             @item.City @item.Street
-                             @if (item.Aparment != 0)
-                             {
-                                 @item.Aparment
-                             }
-                         </td>
-                         <td>
-                             @item.Email
-                         </td>
-                         <td>
-                             @item.HomePhone
-                         </td>
-                         <td>
-                             @item.CellPhone
-                         </td>
-                         <td>
-                            
-                         </td>
-                         @if(item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Pending)
-                          {
-                             <td class="a-yellow-link"><i class="fas fa-circle"></i> Pending</td>
-                          }
-                         @if(item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Aproved)
-                          {
-                              <td class="a-blue-link"><i class="far fa-check-circle"></i> Approved</td>
-                          }
-                         @if(item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Denied)
-                          {
-                              <td class="a-block-link"><i class="fas fa-times-circle"></i> Denied</td>
-                          }
-                     </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.FirstName + " " + item.FirstLastName, "Details", "Persona", new { id = item.PersonId })
+                    </td>
+                    <td>
+                        @if (item.Zip != 0)
+                        {
+                            @item.Zip
+                        }
+                        @item.City @item.Street
+                        @if (item.Aparment != 0)
+                        {
+                            @item.Aparment
+                        }
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.HomePhone
+                    </td>
+                    <td>
+                        @item.CellPhone
+                    </td>
+                    <td></td>
+                    <td>
+                        <i class="fa fa-pencil" style="color: darkblue; font-size: 16px;" ;></i> @Html.ActionLink("Edit", "Edit", new { id = item.PersonId })
+                    </td>
+                    <td>
+                        @if (item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Pending)
+                        {
+                            <i class="a-yellow-link fas fa-circle">Pending</i>
+                        }
+                        @if (item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Aproved)
+                        {
+                            <i class="a-blue-link far fa-check-circle"> Approved</i>
+                        }
+                        @if (item.StatusCliente == CustomEnums.TypoStatusClienteEnum.Denied)
+                        {
+                            <i class="a-block-link fas fa-times-circle"> Denied</i>
+                        }
+                    </td>
+                    <td></td>
+                </tr>
                 }
             </tbody>
         </table>
