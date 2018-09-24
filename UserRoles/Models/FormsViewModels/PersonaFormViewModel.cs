@@ -147,6 +147,15 @@ namespace UserRoles.Models.FormsViewModels
 
         public bool WorkingCapital { get; set; }
 
+        public double CantInvertida { get; set; } //this is for cliente atm
+
+        public string LocationName { get; set; } //this is for cliente location
+
+        public string LocationType { get; set; } //this is for cliente location
+
+        //public string  { get; set; } //this is for cliente location
+
+
 
 
     }

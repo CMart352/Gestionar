@@ -3,7 +3,6 @@
 
 
 
-
 @{
     ViewData["Title"] = "Create";
 
@@ -33,9 +32,9 @@
                         <label asp-for="TypoPersona" class="control">Tipo Persona:</label>
                         <div id="persona">
                             @*@Html.LabelFor(x => x.TypoPersona, labelText: "Fisica", htmlAttributes: new { style = "color: Black" })
-                                @Html.RadioButtonFor(x => x.TypoPersona, CustomEnums.TypoPersonaEnum.Fisica, new { @name = "TypoPersonas" })
-                                @Html.LabelFor(x => x.TypoPersona, labelText: "Juridica", htmlAttributes: new { style = "color: Black" })
-                                @Html.RadioButtonFor(x => x.TypoPersona, CustomEnums.TypoPersonaEnum.Juridica, new { @name = "TypoPersonas" })*@
+                @Html.RadioButtonFor(x => x.TypoPersona, CustomEnums.TypoPersonaEnum.Fisica, new { @name = "TypoPersonas" })
+                @Html.LabelFor(x => x.TypoPersona, labelText: "Juridica", htmlAttributes: new { style = "color: Black" })
+                @Html.RadioButtonFor(x => x.TypoPersona, CustomEnums.TypoPersonaEnum.Juridica, new { @name = "TypoPersonas" })*@
 
                             <label asp-for="TypoPersona" class="control-label">Fisica</label>
                             <input asp-for="TypoPersona" name="TypoPersona" type="radio" value="@CustomEnums.TypoPersonaEnum.Fisica" class="mr-5" checked>
@@ -49,17 +48,17 @@
                     @*this generates a dropdown list try to make it a radio button check*@
                     <div class="form-group">
                         @Html.LabelFor(x => x.Atm, labelText: "ATM", htmlAttributes: new { style = "color: Black" })
-                        @Html.CheckBoxFor(x => x.Atm)
+                        @Html.CheckBoxFor(x => x.Atm, htmlAttributes: new { id = "CheckboxAtm", onClick = "myCheckBoxFunction()" })
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.Location, labelText: "Location", htmlAttributes: new { style = "color: Black" })
-                        @Html.CheckBoxFor(x => x.Location)
+                        @Html.CheckBoxFor(x => x.Location, htmlAttributes: new { id = "CheckboxLocation", onClick = "myCheckBoxFunction()" })
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(x => x.WorkingCapital, labelText: "WorkingCapital", htmlAttributes: new { style = "color: Black" })
-                        @Html.CheckBoxFor(x => x.WorkingCapital)
+                        @Html.CheckBoxFor(x => x.WorkingCapital, htmlAttributes: new { id = "CheckboxWc", onClick = "myCheckBoxFunction()" })
                     </div>
 
 
@@ -108,6 +107,33 @@
                         </div>
                     </div>
                     @*for person juridica*@
+
+                    @*if cliente atm  show this*@
+                    <div class="form-atm" id="atmValue" style="display: none">
+                        <div class="form-group">
+                            <label asp-for="CantInvertida" class="control-label"></label>
+                            <input asp-for="CantInvertida" class="form-control" />
+                            <span asp-validation-for="CantInvertida" class="text-danger"></span>
+                        </div>
+                    </div>
+                    @*for cliente atm*@
+
+                    @*if cliente location  show this*@
+                    <div class="form-atm" id="LocationValue" style="display: none">
+                        <div class="form-group">
+                            <label asp-for="LocationName" class="control-label"></label>
+                            <input asp-for="LocationName" class="form-control" />
+                            <span asp-validation-for="LocationName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LocationType" class="control-label"></label>
+                            <input asp-for="LocationType" class="form-control" />
+                            <span asp-validation-for="LocationType" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                    @*for cliente atm*@
 
                     @*for typo documento y numero documento*@
 
@@ -348,39 +374,64 @@
 <script>
     $(document).ready(function () {
         console.log("i am here");
-        $('input[name=TypoPersona]').change(function (e) {
-            let value = e.target.value.trim()
-            console.log("the val is " + value);
-            switch (value) {
-                case 'Fisica':
-                    $('.form-firstname').css("display", "block");
-                    $('.form-secondname').css("display", "block");
-                    $('.form-firstlastname').css("display", "block");
-                    $('.form-secondlastname').css("display", "block");
-                    $('.form-typodocumento').css("display", "block");
-                    $('.form-numdocumento').css("display", "block");
-                    $('.form-razon').css("display", "none");
-                    $('.form-representantes').css("display", "none");
+        var selcheckValue = "";
+        //when persona fisica o juridica 
+        $('input[name=TypoPersona]').click(function (e) {
+            selRadioValue = e.target.value.trim()
+            console.log("the selradioval is " + selRadioValue);
+            if (selRadioValue === 'Fisica') {
+                //case 'Fisica':
+                $('.form-firstname').css("display", "block");
+                $('.form-secondname').css("display", "block");
+                $('.form-firstlastname').css("display", "block");
+                $('.form-secondlastname').css("display", "block");
+                $('.form-typodocumento').css("display", "block");
+                $('.form-numdocumento').css("display", "block");
+                $('.form-razon').css("display", "none");
+                $('.form-representantes').css("display", "none");
+               // $('.form-atm').css("display", "block");
+            }
 
-
-                    break;
-
-                case 'Juridica':
-                    $('.form-firstname').css("display", "none");
-                    $('.form-secondname').css("display", "none");
-                    $('.form-firstlastname').css("display", "none");
-                    $('.form-secondlastname').css("display", "none");
-                    $('.form-typodocumento').css("display", "block");
-                    $('.form-numdocumento').css("display", "block");
-                    $('.form-razon').css("display", "block");
-                    $('.form-representantes').css("display", "block");
-                    $("#street").val('');
-                    $("#numeroDoc").val('');
-                    $("#zip").val('');
-                    break;
+            else if (selRadioValue === 'Juridica' ) {
+                // case 'Juridica':
+                $('.form-firstname').css("display", "none");
+                $('.form-secondname').css("display", "none");
+                $('.form-firstlastname').css("display", "none");
+                $('.form-secondlastname').css("display", "none");
+                $('.form-typodocumento').css("display", "block");
+                $('.form-numdocumento').css("display", "block");
+                $('.form-razon').css("display", "block");
+                $('.form-representantes').css("display", "block");
+              //  $('.form-atm').css("display", "block");
+                $("#street").val('');
+                $("#numeroDoc").val('');
+                $("#zip").val('');
+                //break;
             }
         })
     })
+
+    function myCheckBoxFunction() {
+        var checkBoxAtm = document.getElementById("CheckboxAtm");
+        var checkBoxLocation = document.getElementById("CheckboxLocation");
+        var textAtm = document.getElementById("atmValue");
+        var textLocation = document.getElementById("LocationValue");
+
+        if (checkBoxAtm.checked == true) {
+            textAtm.style.display = "block";
+        }
+        if (checkBoxLocation.checked == true) {
+            textLocation.style.display = "block";
+        }
+        if (checkBoxAtm.checked == false) {
+            textAtm.style.display = "none";
+        }
+        if (checkBoxLocation.checked == false){
+                textLocation.style.display = "none";
+        }
+           
+    }
+
 </script>
 
 <script>
