@@ -10,7 +10,7 @@
         <h2 class="h2-header h2-center">Details</h2>
         <div class="bordered-box">
             <div class="mb-2 row">
-                @if (Model.Razonsocial == null)
+                @if (Model.RazonSocial == null)
                 {
                     <div class="col-md-4">
                         <div class="font-weight-bold">Nombre: </div>
@@ -264,7 +264,7 @@
                         @*@Html.ActionLink("Deny", "DenyPersona", "Persona", new { personId = Model.PersonId}, new { @class = "btn btn-outline-danger add-display-block" })*@
                     </div>
                     <div class="col-md-4">
-                        @if (Model.Razonsocial == null)
+                        @if (Model.RazonSocial == null)
                         {
                             @Html.ActionLink("Return to list", "PersonaFisica", "Persona", null, new { @class = "btn btn-outline-secondary add-display-block" })
                         }

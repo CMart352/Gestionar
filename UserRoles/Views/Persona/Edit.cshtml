@@ -5,124 +5,135 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
-
-<h4>Persona</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PersonId" />
-            <div class="form-group">
-                @if (Model.TypoPersona == CustomEnums.TypoPersonaEnum.Fisica)
-                {
+<div class="container">
+    <h2 class="h2-header">Edit Persona</h2>
+    <hr />
+    <div class="edit-persona-form">
+        <div class="row">
+            <div class="col-md-6">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="PersonId" />
                     <div class="form-group">
-                        <label asp-for="FirstName" class="control-label"></label>
-                        <input asp-for="FirstName" class="form-control" />
-                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        @if (Model.TypoPersona == CustomEnums.TypoPersonaEnum.Fisica)
+                        {
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="control-label"></label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="SecondName" class="control-label"></label>
+                                <input asp-for="SecondName" class="form-control" />
+                                <span asp-validation-for="SecondName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="FirstLastName" class="control-label"></label>
+                                <input asp-for="FirstLastName" class="form-control" />
+                                <span asp-validation-for="FirstLastName" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="SecondLastName" class="control-label"></label>
+                                <input asp-for="SecondLastName" class="form-control" />
+                                <span asp-validation-for="SecondLastName" class="text-danger"></span>
+                            </div>
+                        }
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="SecondName" class="control-label"></label>
-                        <input asp-for="SecondName" class="form-control" />
-                        <span asp-validation-for="SecondName" class="text-danger"></span>
+                        @if (Model.TypoPersona == CustomEnums.TypoPersonaEnum.Juridica)
+                        {
+                            <div class="form-group">
+                                <label asp-for="RazonSocial" class="control-label"></label>
+                                <input asp-for="RazonSocial" class="form-control" />
+                                <span asp-validation-for="RazonSocial" class="text-danger"></span>
+                            </div>
+                        }
                     </div>
+
 
                     <div class="form-group">
-                        <label asp-for="FirstLastName" class="control-label"></label>
-                        <input asp-for="FirstLastName" class="form-control" />
-                        <span asp-validation-for="FirstLastName" class="text-danger"></span>
+                        <label asp-for="Street" class="control-label"></label>
+                        <input asp-for="Street" class="form-control" />
+                        <span asp-validation-for="Street" class="text-danger"></span>
                     </div>
-
                     <div class="form-group">
-                        <label asp-for="SecondLastName" class="control-label"></label>
-                        <input asp-for="SecondLastName" class="form-control" />
-                        <span asp-validation-for="SecondLastName" class="text-danger"></span>
+                        <label asp-for="Numero" class="control-label"></label>
+                        <input asp-for="Numero" class="form-control" />
+                        <span asp-validation-for="Numero" class="text-danger"></span>
                     </div>
-                }
-            </div>
-
-            <div class="form-group">
-                @if (Model.TypoPersona == CustomEnums.TypoPersonaEnum.Juridica)
-                {
                     <div class="form-group">
-                        <label asp-for="RazonSocial" class="control-label"></label>
-                        <input asp-for="RazonSocial" class="form-control" />
-                        <span asp-validation-for="RazonSocial" class="text-danger"></span>
+                        <label asp-for="Floor" class="control-label"></label>
+                        <input asp-for="Floor" class="form-control" />
+                        <span asp-validation-for="Floor" class="text-danger"></span>
                     </div>
-                }
+                    <div class="form-group">
+                        <label asp-for="Aparment" class="control-label"></label>
+                        <input asp-for="Aparment" class="form-control" />
+                        <span asp-validation-for="Aparment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zip" class="control-label"></label>
+                        <input asp-for="Zip" class="form-control" />
+                        <span asp-validation-for="Zip" class="text-danger"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="CityId" class="control-label"></label>
+                        <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                        <span asp-validation-for="CityId" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Web" class="control-label"></label>
+                        <input asp-for="Web" class="form-control" />
+                        <span asp-validation-for="Web" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HomePhone" class="control-label"></label>
+                        <input asp-for="HomePhone" class="form-control" />
+                        <span asp-validation-for="HomePhone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CellPhone" class="control-label"></label>
+                        <input asp-for="CellPhone" class="form-control" />
+                        <span asp-validation-for="CellPhone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Id" class="control-label"></label>
+                        <input asp-for="Id" class="form-control" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumeroDoc" class="control-label"></label>
+                        <input asp-for="NumeroDoc" class="form-control" />
+                        <span asp-validation-for="NumeroDoc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-7 col-lg-8">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                            <div class="col-md-5 col-lg-4 float-lg-right text-lg-right">
+                                @if (Model.RazonSocial == null)
+                                {
+                                    @Html.ActionLink("Return to list", "PersonaFisica", "Persona", null, new { @class = "btn btn-outline-secondary" })
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Return to list", "PersonaJuridica", "Persona", null, new { @class = "btn btn-outline-secondary" })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-
-            <div class="form-group">
-                <label asp-for="Street" class="control-label"></label>
-                <input asp-for="Street" class="form-control" />
-                <span asp-validation-for="Street" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Numero" class="control-label"></label>
-                <input asp-for="Numero" class="form-control" />
-                <span asp-validation-for="Numero" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Floor" class="control-label"></label>
-                <input asp-for="Floor" class="form-control" />
-                <span asp-validation-for="Floor" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Aparment" class="control-label"></label>
-                <input asp-for="Aparment" class="form-control" />
-                <span asp-validation-for="Aparment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Zip" class="control-label"></label>
-                <input asp-for="Zip" class="form-control" />
-                <span asp-validation-for="Zip" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="CityId" class="control-label"></label>
-            <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId"></select>
-            <span asp-validation-for="CityId" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Web" class="control-label"></label>
-                <input asp-for="Web" class="form-control" />
-                <span asp-validation-for="Web" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HomePhone" class="control-label"></label>
-                <input asp-for="HomePhone" class="form-control" />
-                <span asp-validation-for="HomePhone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CellPhone" class="control-label"></label>
-                <input asp-for="CellPhone" class="form-control" />
-                <span asp-validation-for="CellPhone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumeroDoc" class="control-label"></label>
-                <input asp-for="NumeroDoc" class="form-control" />
-                <span asp-validation-for="NumeroDoc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
