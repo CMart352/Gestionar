@@ -390,7 +390,7 @@
                 $('.form-razon').css("display", "none");
                 $('.form-representantes').css("display", "none");
             }
-            else if (selRadioValue === 'Juridica' ) {
+            else if (selRadioValue === 'Juridica') {
                 $('.form-firstname').css("display", "none");
                 $('.form-secondname').css("display", "none");
                 $('.form-firstlastname').css("display", "none");
@@ -399,14 +399,14 @@
                 $('.form-numdocumento').css("display", "block");
                 $('.form-razon').css("display", "block");
                 $('.form-representantes').css("display", "block");
-             
+
                 $("#street").val('');
                 $("#numeroDoc").val('');
                 $("#zip").val('');
                 //break;
             }
-        })
-    })
+        });
+    });
 
     function myCheckBoxFunction() {
 
@@ -415,16 +415,16 @@
         var textAtm = document.getElementById("atmValue");
         var textLocation = document.getElementById("LocationValue");
 
-        if (checkBoxAtm.checked == true) {
+        if (checkBoxAtm.checked === true) {
             textAtm.style.display = "block";
         }
-        if (checkBoxLocation.checked == true) {
+        if (checkBoxLocation.checked === true) {
             textLocation.style.display = "block";
         }
-        if (checkBoxAtm.checked == false) {
+        if (checkBoxAtm.checked === false) {
             textAtm.style.display = "none";
         }
-        if (checkBoxLocation.checked == false){
+        if (checkBoxLocation.checked === false){
                 textLocation.style.display = "none";
         }
            
