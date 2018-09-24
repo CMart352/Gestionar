@@ -389,11 +389,8 @@
                 $('.form-numdocumento').css("display", "block");
                 $('.form-razon').css("display", "none");
                 $('.form-representantes').css("display", "none");
-               // $('.form-atm').css("display", "block");
             }
-
             else if (selRadioValue === 'Juridica' ) {
-                // case 'Juridica':
                 $('.form-firstname').css("display", "none");
                 $('.form-secondname').css("display", "none");
                 $('.form-firstlastname').css("display", "none");
@@ -402,7 +399,7 @@
                 $('.form-numdocumento').css("display", "block");
                 $('.form-razon').css("display", "block");
                 $('.form-representantes').css("display", "block");
-              //  $('.form-atm').css("display", "block");
+             
                 $("#street").val('');
                 $("#numeroDoc").val('');
                 $("#zip").val('');
@@ -412,6 +409,7 @@
     })
 
     function myCheckBoxFunction() {
+
         var checkBoxAtm = document.getElementById("CheckboxAtm");
         var checkBoxLocation = document.getElementById("CheckboxLocation");
         var textAtm = document.getElementById("atmValue");
